@@ -23,6 +23,9 @@ public class BaseStat {
 		base_value++;
 	}
 
+	public int adjusted_base_value() {
+		return _base_value + _buff_value;
+	}
 #region Setters and Getters
 	public int base_value{
 		get{return _base_value;}
