@@ -15,7 +15,7 @@ public class BaseStat {
 	}
 
 	public int calculate_exp_to_level() {
-		return exp_to_level * level_modifier;
+		return (int)(exp_to_level * level_modifier);
 	}
 
 	public void level_up() {
