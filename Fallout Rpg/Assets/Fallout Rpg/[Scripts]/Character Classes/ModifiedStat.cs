@@ -11,21 +11,29 @@ public class ModifiedStat : BaseStat {
 		_mod_value = 0;
 	}
 
-	public add_modifier(ModifiedStat mod){
+	public void add_modifier(ModifyingStat mod){
 		_mods.Add(mod);
 	}
 
 	public void calculate_mod_value(){
 		_mod_value = 0;
 
-		if(_mods.Count > 0)
-			foreach(ModifyingStat stat in _mods)
-				_mod_value += (int)(stat.primary_stat.adjusted_base_value * stat.ratio)
+		if (_mods.Count > 0)
+			foreach (ModifyingStat stat in _mods)
+				_mod_value += (int)(stat.primary_stat.adjusted_base_value * stat.ratio);
+	}
+
+	public new int adjusted_base_value {
+		get{return base_value + buff_value + _mod_value;}
+	}
+
+	public void Update(){
+		calculate_mod_value();
 	}
 }
 
 
 public struct ModifyingStat {
 	public PrimaryStat primary_stat;
-	public floar ratio;
+	public float ratio;
 }

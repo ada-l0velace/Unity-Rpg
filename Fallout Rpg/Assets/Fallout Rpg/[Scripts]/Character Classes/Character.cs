@@ -3,17 +3,17 @@ using System.Collections;
 using System;
 
 public class Character : Entity {
-	private string name;
-	private int level;
-	private uint xp;
+	private string _name;
+	private int _level;
+	private uint _xp;
 	// primary_stats
 	// derived_stats
 	// skills
 
 	void Awake(){
-		name = "";
-		level = 0;
-		xp = 0;
+		_name = "";
+		_level = 0;
+		_xp = 0;
 	}
 // Use this for initialization
 	void Start () {
