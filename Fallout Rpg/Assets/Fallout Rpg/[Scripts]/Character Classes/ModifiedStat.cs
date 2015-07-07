@@ -27,7 +27,7 @@ public class ModifiedStat : BaseStat {
 		get{return base_value + buff_value + _mod_value;}
 	}
 
-	public void Update(){
+	public void update(){
 		calculate_mod_value();
 	}
 }
