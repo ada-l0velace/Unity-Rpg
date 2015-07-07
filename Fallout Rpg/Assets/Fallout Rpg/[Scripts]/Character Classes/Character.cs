@@ -87,14 +87,14 @@ public class Character : Entity {
 		get_derived_stats ((int)DerivedName.ActionPoints).add_modifier (action_points);
 		//Health
 		ModifyingStat damage_m = new ModifyingStat ();
-		damage_m.primary_stat = get_primary_stats ((int)StatName.Endurance);
+		damage_m.primary_stat = get_primary_stats ((int)StatName.Strength);
 		damage_m.ratio = .5f;
-		get_derived_stats ((int)DerivedName.Health).add_modifier (damage_m);
+		get_derived_stats ((int)DerivedName.Damage).add_modifier (damage_m);
 		//Health
 		ModifyingStat armor_m = new ModifyingStat ();
 		armor_m.primary_stat = get_primary_stats ((int)StatName.Endurance);
 		armor_m.ratio = .5f;
-		get_derived_stats ((int)DerivedName.Health).add_modifier (armor_m);
+		get_derived_stats ((int)DerivedName.Armor).add_modifier (armor_m);
 
 	}
 
