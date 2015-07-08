@@ -1,0 +1,5 @@
+Node bubbles in a grid containing the story
+Story structure divided in 2 points Scene and Scene Details
+Scene serves as a folder to ease readability
+Scene Details contains actual story text and options
+A Scene will not point to another scene directly, instead it's details will lead there
