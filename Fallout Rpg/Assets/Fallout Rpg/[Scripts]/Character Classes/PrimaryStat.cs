@@ -8,7 +8,7 @@ public class PrimaryStat : BaseStat {
 	}
 }
 public enum StatName {
-	Strength = 0,
+	Strength,
 	Agility,
 	Luck,
 	Charisma,
