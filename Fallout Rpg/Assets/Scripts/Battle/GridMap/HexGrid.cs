@@ -18,6 +18,7 @@ public class HexGrid: MonoBehaviour {
     public float side;
     public float xOffset;
     public float yOffset;
+    public Color gridColor;
 
     /*public void Init() {
         GeneratePoints();
@@ -202,7 +203,7 @@ public class HexGrid: MonoBehaviour {
         //
         for (int i = 0; i < hexes.GetLength(0); i++) {
             for (int j = 0; j < hexes.GetLength(1); j++) {
-                texture.DrawPolygon(hexes[i, j].Points, Color.red);
+                texture.DrawPolygon(hexes[i, j].Points, gridColor);
             }
         }
         //

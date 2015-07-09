@@ -64,10 +64,12 @@ public class GridSquareMouseOver: MonoBehaviour {
         battleCommand.init(Mathf.FloorToInt(gp.mapWidth), Mathf.FloorToInt(gp.mapHeight), this);*/
         _grid = GetComponent<HexGrid>();
         _grid.GeneratePoints();
-        //_grid.Draw();
-
+#if UNITY_EDITOR
+        _grid.Draw();
+#endif
         _playerAct = true;
         //allowPlayerActions = true;
+        init();
     }
 
     public void init() {
@@ -257,6 +259,7 @@ public class GridSquareMouseOver: MonoBehaviour {
 
     void OnGUI() {
         if (displayGUI) {
+            GUI.color = Color.black;
             GUI.Label(new Rect(0f, Screen.height * .5f, 400f, Screen.height * .5f),
                 "Mouse Position (World): " + _mousePosition.ToString() +
                 "\nMouse Position (Monitor): " + Input.mousePosition.ToString() +
