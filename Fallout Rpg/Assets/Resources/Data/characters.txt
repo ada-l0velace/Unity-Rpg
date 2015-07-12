@@ -1,1 +1,1 @@
-{}
+{"characters":[{"name":"Character 1","id":1},{"name":"Character 2","id":2},{"name":"Character 3","id":3},{"name":"Character 4","id":4},{"name":"Character 5","id":5}]}
