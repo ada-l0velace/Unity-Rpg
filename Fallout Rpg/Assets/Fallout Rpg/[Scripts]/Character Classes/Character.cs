@@ -132,10 +132,10 @@ public class Character : Entity {
 	private void setup_modifiers(){
 
 		//Carry Weight
-		ModifyingStat carry_weight = new ModifyingStat ();
-		carry_weight.primary_stat = get_primary_stats (STRENGTH);
-		carry_weight.ratio = 25.0f;
-		get_derived_stats (CARRY_WEIGHT).add_modifier (carry_weight);
+		ModifyingStat carry_weight_strength = new ModifyingStat ();
+		carry_weight_strength.primary_stat = get_primary_stats (STRENGTH);
+		carry_weight_strength.ratio = 25.0f;
+		get_derived_stats (CARRY_WEIGHT).add_modifier (carry_weight_strength);
 
 		//Hit points
 		ModifyingStat hit_points_endurance = new ModifyingStat (); //Endurance modifier for hit points
@@ -145,8 +145,8 @@ public class Character : Entity {
 		hit_points_strength.primary_stat = get_primary_stats (STRENGTH);
 		hit_points_strength.ratio = 1.0f;
 		//adds the modifiers to the stats :D
-		get_derived_stats ((int)DerivedName.HitPoints).add_modifier (hit_points_endurance);
-		get_derived_stats ((int)DerivedName.HitPoints).add_modifier (hit_points_strength);
+		get_derived_stats (HIT_POINTS).add_modifier (hit_points_endurance);
+		get_derived_stats (HIT_POINTS).add_modifier (hit_points_strength);
 
 		//Action Points
 		ModifyingStat action_points = new ModifyingStat ();
@@ -160,11 +160,35 @@ public class Character : Entity {
 		melee_damage.ratio = 1.0f;
 		get_derived_stats (MELEE_DAMAGE).add_modifier (melee_damage);
 
+		//Healing Rate
+		ModifyingStat healing_rate_endurance = new ModifyingStat ();
+		healing_rate_endurance.primary_stat = get_primary_stats (ENDURANCE);
+		healing_rate_endurance.ratio = 1.0f / 3.0f;
+		get_derived_stats (HEALING_RATE).add_modifier (healing_rate_endurance);
+
+		//Poison Resistance
+		ModifyingStat poison_res_endurance = new ModifyingStat ();
+		poison_res_endurance.primary_stat = get_primary_stats (ENDURANCE);
+		poison_res_endurance.ratio = 5.0f;
+		get_derived_stats (POISON_RESISTANCE).add_modifier (poison_res_endurance);
+
+		//Radiation Resistance
+		ModifyingStat radiation_res_endurance = new ModifyingStat ();
+		radiation_res_endurance.primary_stat = get_primary_stats (ENDURANCE);
+		radiation_res_endurance.ratio = 2.0f;
+		get_derived_stats (RADIATION_RESISTANCE).add_modifier (radiation_res_endurance);
+
 		//Evasion, chance to get hitted
 		ModifyingStat evasion = new ModifyingStat ();
 		evasion.primary_stat = get_primary_stats (AGILITY);
 		evasion.ratio = 1.0f;
 		get_derived_stats (EVASION).add_modifier (evasion);
+
+		//Critical Chance
+		ModifyingStat critical_chance_luck = new ModifyingStat ();
+		critical_chance_luck.primary_stat = get_primary_stats (LUCK);
+		critical_chance_luck.ratio = 1.0f;
+		get_derived_stats (CRITICAL_CHANCE).add_modifier (critical_chance_luck);
 
 	}
 

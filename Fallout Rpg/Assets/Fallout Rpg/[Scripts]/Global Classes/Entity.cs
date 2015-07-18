@@ -12,4 +12,7 @@ public class Entity : MonoBehaviour {
 	void Update () {
 	
 	}
+	int min (int value) {
+		return (value > 0) ? value : 1;
+	}
 }

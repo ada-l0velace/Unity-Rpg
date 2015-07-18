@@ -45,4 +45,7 @@ public class BaseStat {
 		set{ _buff_value = value;}
 	}
 #endregion
+	protected int min (int value) {
+		return (value > 0) ? value : 1;
+	}
 }

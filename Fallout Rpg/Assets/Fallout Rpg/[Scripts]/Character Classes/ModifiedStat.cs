@@ -24,7 +24,7 @@ public class ModifiedStat : BaseStat {
 	}
 
 	public new int adjusted_base_value {
-		get{return base_value + buff_value + _mod_value;}
+		get{return min(base_value + buff_value + _mod_value);}
 	}
 
 	public void update(){
