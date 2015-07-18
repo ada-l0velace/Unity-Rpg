@@ -9,6 +9,12 @@ public class DerivedStat : ModifiedStat {
 		exp_to_level = 50;
 		level_modifier = 1.1f;
 	}
+	public DerivedStat (int baseV){
+		base_value = baseV;
+		_cur_value = 0;
+		exp_to_level = 50;
+		level_modifier = 1.1f;
+	}
 
 	public int cur_value {
 		get {return _cur_value;}
@@ -17,8 +23,13 @@ public class DerivedStat : ModifiedStat {
 }
 
 public enum DerivedName {
-	Health,
+	CarryWeight,
+	HitPoints,
+	MeleeDamage,
+	HealingRate,
+	PoisonResistance,
+	RadiationResistance,
 	ActionPoints,
-	Damage,
-	Armor
+	Evasion,
+	CriticalChance
 }

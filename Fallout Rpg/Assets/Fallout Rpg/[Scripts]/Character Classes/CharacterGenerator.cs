@@ -2,16 +2,12 @@
 using System.Collections;
 using System;
 
-public class CharacterGenerator : MonoBehaviour {
+public class CharacterGenerator : Entity {
 	private Player _player;	
 	// Use this for initialization
 	void Start () {
 		_player = new Player ();
 		_player.Awake();
-		for(int i = 0; i < Enum.GetValues(typeof(StatName)).Length;i++){
-			_player.get_primary_stats(i).base_value = 10;
-		}
-		_player.update_stats();
 	}
 	
 	// Update is called once per frame

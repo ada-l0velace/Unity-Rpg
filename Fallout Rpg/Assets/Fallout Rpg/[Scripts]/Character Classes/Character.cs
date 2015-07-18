@@ -8,6 +8,27 @@ public class Character : Entity {
 	private uint _xp;
 	private PrimaryStat [] _primary_stats;
 	private DerivedStat [] _derived_stats;
+	private int STARTING_PSTATS = 5;
+
+	// Primary Stats 
+	private const int STRENGTH = (int)StatName.Strength;
+	private const  int PERCEPTION = (int)StatName.Perception;
+	private const  int ENDURANCE = (int)StatName.Endurance;
+	private const  int CHARISMA = (int)StatName.Charisma;
+	private const  int INTELLIGENCE = (int)StatName.Intelligence;
+	private const  int AGILITY = (int)StatName.Agility;
+	private const  int LUCK = (int)StatName.Luck;
+
+	// Derived Stats
+	private const int CARRY_WEIGHT = (int)DerivedName.CarryWeight;
+	private const  int HIT_POINTS = (int)DerivedName.HitPoints;
+	private const  int MELEE_DAMAGE = (int)DerivedName.MeleeDamage;
+	private const  int HEALING_RATE = (int)DerivedName.HealingRate;
+	private const  int POISON_RESISTANCE = (int)DerivedName.PoisonResistance;
+	private const  int RADIATION_RESISTANCE = (int)DerivedName.RadiationResistance;
+	private const  int ACTION_POINTS = (int)DerivedName.ActionPoints;
+	private const  int EVASION = (int)DerivedName.Evasion;
+	private const  int CRITICAL_CHANCE = (int)DerivedName.CriticalChance;
 	// derived_stats
 	// skills
 
@@ -20,6 +41,7 @@ public class Character : Entity {
 		setup_primary_stats ();
 		setup_derived_stats ();
 		setup_modifiers ();
+		update_stats ();
 	}
 
 	public void start(){
@@ -56,13 +78,42 @@ public class Character : Entity {
 
 	public void setup_primary_stats(){
 		for ( int i = 0; i < _primary_stats.Length;i++) {
-			_primary_stats [i] = new PrimaryStat();
+			_primary_stats [i] = new PrimaryStat(STARTING_PSTATS);
 		}
 	}
 
 	public void setup_derived_stats(){
 		for ( int i = 0; i < _derived_stats.Length;i++) {
-			_derived_stats [i] = new DerivedStat();
+			switch(i)
+			{
+				case CARRY_WEIGHT:
+					_derived_stats [i] = new DerivedStat(25);
+					break;
+				case HIT_POINTS:
+					_derived_stats [i] = new DerivedStat(15);
+					break;
+				case MELEE_DAMAGE:
+					_derived_stats [i] = new DerivedStat(-5);
+					break;
+				case HEALING_RATE:
+					_derived_stats [i] = new DerivedStat();
+					break;
+				case POISON_RESISTANCE:
+					_derived_stats [i] = new DerivedStat();
+					break;
+				case RADIATION_RESISTANCE:
+					_derived_stats [i] = new DerivedStat();
+					break;
+				case ACTION_POINTS:
+					_derived_stats [i] = new DerivedStat(5);
+					break;
+				case EVASION:
+					_derived_stats [i] = new DerivedStat();
+					break;
+				case CRITICAL_CHANCE:
+					_derived_stats [i] = new DerivedStat();
+					break;
+			}
 		}
 	}
 
@@ -74,27 +125,46 @@ public class Character : Entity {
 		return _derived_stats [index];
 	}
 
+	/// <summary>
+	/// Method to define game stats
+	/// </summary>
+	/// <remarks>this method runs at Awake().</remarks>
 	private void setup_modifiers(){
-		//Health
-		ModifyingStat health_m = new ModifyingStat ();
-		health_m.primary_stat = get_primary_stats ((int)StatName.Endurance);
-		health_m.ratio = .5f;
-		get_derived_stats ((int)DerivedName.Health).add_modifier (health_m);
-		//ActionPoints
+
+		//Carry Weight
+		ModifyingStat carry_weight = new ModifyingStat ();
+		carry_weight.primary_stat = get_primary_stats (STRENGTH);
+		carry_weight.ratio = 25.0f;
+		get_derived_stats (CARRY_WEIGHT).add_modifier (carry_weight);
+
+		//Hit points
+		ModifyingStat hit_points_endurance = new ModifyingStat (); //Endurance modifier for hit points
+		hit_points_endurance.primary_stat = get_primary_stats (ENDURANCE);
+		hit_points_endurance.ratio = 2.0f;
+		ModifyingStat hit_points_strength = new ModifyingStat (); //Strength modifier for hit points
+		hit_points_strength.primary_stat = get_primary_stats (STRENGTH);
+		hit_points_strength.ratio = 1.0f;
+		//adds the modifiers to the stats :D
+		get_derived_stats ((int)DerivedName.HitPoints).add_modifier (hit_points_endurance);
+		get_derived_stats ((int)DerivedName.HitPoints).add_modifier (hit_points_strength);
+
+		//Action Points
 		ModifyingStat action_points = new ModifyingStat ();
-		action_points.primary_stat = get_primary_stats ((int)StatName.Agility);
+		action_points.primary_stat = get_primary_stats (AGILITY);
 		action_points.ratio = .5f;
-		get_derived_stats ((int)DerivedName.ActionPoints).add_modifier (action_points);
-		//Health
-		ModifyingStat damage_m = new ModifyingStat ();
-		damage_m.primary_stat = get_primary_stats ((int)StatName.Strength);
-		damage_m.ratio = .5f;
-		get_derived_stats ((int)DerivedName.Damage).add_modifier (damage_m);
-		//Health
-		ModifyingStat armor_m = new ModifyingStat ();
-		armor_m.primary_stat = get_primary_stats ((int)StatName.Endurance);
-		armor_m.ratio = .5f;
-		get_derived_stats ((int)DerivedName.Armor).add_modifier (armor_m);
+		get_derived_stats (ACTION_POINTS).add_modifier (action_points);
+
+		//Melee Damage
+		ModifyingStat melee_damage = new ModifyingStat ();
+		melee_damage.primary_stat = get_primary_stats (STRENGTH);
+		melee_damage.ratio = 1.0f;
+		get_derived_stats (MELEE_DAMAGE).add_modifier (melee_damage);
+
+		//Evasion, chance to get hitted
+		ModifyingStat evasion = new ModifyingStat ();
+		evasion.primary_stat = get_primary_stats (AGILITY);
+		evasion.ratio = 1.0f;
+		get_derived_stats (EVASION).add_modifier (evasion);
 
 	}
 
