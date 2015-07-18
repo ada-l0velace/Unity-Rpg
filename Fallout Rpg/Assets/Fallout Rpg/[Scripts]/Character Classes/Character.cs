@@ -12,23 +12,24 @@ public class Character : Entity {
 
 	// Primary Stats 
 	private const int STRENGTH = (int)StatName.Strength;
-	private const  int PERCEPTION = (int)StatName.Perception;
-	private const  int ENDURANCE = (int)StatName.Endurance;
-	private const  int CHARISMA = (int)StatName.Charisma;
-	private const  int INTELLIGENCE = (int)StatName.Intelligence;
-	private const  int AGILITY = (int)StatName.Agility;
-	private const  int LUCK = (int)StatName.Luck;
+	private const int PERCEPTION = (int)StatName.Perception;
+	private const int ENDURANCE = (int)StatName.Endurance;
+	private const int CHARISMA = (int)StatName.Charisma;
+	private const int INTELLIGENCE = (int)StatName.Intelligence;
+	private const int AGILITY = (int)StatName.Agility;
+	private const int LUCK = (int)StatName.Luck;
 
 	// Derived Stats
 	private const int CARRY_WEIGHT = (int)DerivedName.CarryWeight;
-	private const  int HIT_POINTS = (int)DerivedName.HitPoints;
-	private const  int MELEE_DAMAGE = (int)DerivedName.MeleeDamage;
-	private const  int HEALING_RATE = (int)DerivedName.HealingRate;
-	private const  int POISON_RESISTANCE = (int)DerivedName.PoisonResistance;
-	private const  int RADIATION_RESISTANCE = (int)DerivedName.RadiationResistance;
-	private const  int ACTION_POINTS = (int)DerivedName.ActionPoints;
-	private const  int EVASION = (int)DerivedName.Evasion;
-	private const  int CRITICAL_CHANCE = (int)DerivedName.CriticalChance;
+	private const int HIT_POINTS = (int)DerivedName.HitPoints;
+	private const int MELEE_DAMAGE = (int)DerivedName.MeleeDamage;
+	private const int HEALING_RATE = (int)DerivedName.HealingRate;
+	private const int POISON_RESISTANCE = (int)DerivedName.PoisonResistance;
+	private const int RADIATION_RESISTANCE = (int)DerivedName.RadiationResistance;
+	private const int ACTION_POINTS = (int)DerivedName.ActionPoints;
+	private const int EVASION = (int)DerivedName.Evasion;
+	private const int CRITICAL_CHANCE = (int)DerivedName.CriticalChance;
+	private const int SEQUENCE = (int)DerivedName.Sequence;
 	// derived_stats
 	// skills
 
@@ -113,6 +114,9 @@ public class Character : Entity {
 				case CRITICAL_CHANCE:
 					_derived_stats [i] = new DerivedStat();
 					break;
+				case SEQUENCE:
+					_derived_stats [i] = new DerivedStat();
+					break;
 			}
 		}
 	}
@@ -189,6 +193,12 @@ public class Character : Entity {
 		critical_chance_luck.primary_stat = get_primary_stats (LUCK);
 		critical_chance_luck.ratio = 1.0f;
 		get_derived_stats (CRITICAL_CHANCE).add_modifier (critical_chance_luck);
+
+		//Sequence
+		ModifyingStat sequence_perception = new ModifyingStat ();
+		sequence_perception.primary_stat = get_primary_stats (PERCEPTION);
+		sequence_perception.ratio = 2.0f;
+		get_derived_stats (SEQUENCE).add_modifier (sequence_perception);
 
 	}
 

@@ -31,5 +31,6 @@ public enum DerivedName {
 	RadiationResistance,
 	ActionPoints,
 	Evasion,
-	CriticalChance
+	CriticalChance,
+	Sequence
 }
