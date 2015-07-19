@@ -15,9 +15,9 @@ Rpg Fallout Like
 # Useful links
 
 # Setup Fab (Windows)
-<p> run the bat files in this order: </p>
-<p> 1 - setupfabric.bat </p>
-<p> 2 - setup2.bat </p>
-<p> 3 - setup3.bat </p>
-
+``` 
+1 - setupfabric.bat
+2 - setup2.bat 
+3 - setup3.bat
+``` 
 
