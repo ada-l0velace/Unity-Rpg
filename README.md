@@ -15,6 +15,7 @@ Rpg Fallout Like
 # Useful links
 
 # Setup Fab (Windows)
+  run in this order:
 ``` 
 1 - setupfabric.bat
 2 - setup2.bat 
