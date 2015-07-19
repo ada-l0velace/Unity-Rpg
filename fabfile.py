@@ -23,21 +23,6 @@ def update_requirements(arg='s'):
 def freeze():
     run_in_venv('pip freeze > requirements.txt')
 
-    # deleting private requirements
-    f = open('requirements.txt', 'r')
-    lines = f.readlines()
-    f.close()  # buffer all the lines
-
-    f = open('requirements.txt', 'w')
-    flag = False
-    for line in lines:  # rewrite all the lines except private requirements
-        for r in PRIVATE_REQUIREMENTS:
-            if r in line:
-                flag = True
-        if not flag:
-            f.write(line)
-            flag = False
-
 def pull_r():
     local('git pull --rebase')
 
