@@ -36,3 +36,4 @@ Fallout Rpg/[Tt]humbs.db
 # ========== #
 
 .venv/
+.directory/
