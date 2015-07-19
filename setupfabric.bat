@@ -9,3 +9,4 @@ powershell -Command "Invoke-WebRequest https://raw.github.com/pypa/pip/master/co
 DEL /F /S /Q /A "python-2.7.10.amd64.msi"
 DEL /F /S /Q /A "get-pip.py"
 set /p temp="Everything is now installed now run setup2.bat"
+
