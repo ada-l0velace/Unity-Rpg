@@ -14,7 +14,7 @@ public class CharacterGenerator : Entity {
 	
 	// Update is called once per frame
 	void Update () {
-		_player.calculate_level();
+
 	}
 
 	void OnGUI(){

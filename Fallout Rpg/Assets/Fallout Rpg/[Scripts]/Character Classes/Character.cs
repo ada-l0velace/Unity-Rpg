@@ -77,7 +77,7 @@ public class Character : Entity {
 
 	public void add_exp(uint experience) {
 		_xp +=  experience;
-
+		calculate_level();
 	}
 
 	public void calculate_xp_to_level() {
@@ -88,7 +88,6 @@ public class Character : Entity {
 		if (_xp >= _xp_to_level && _xp_to_level > 0) {
 			_level++;
 			calculate_xp_to_level();
-			Debug.Log(_xp_to_level);
 			get_derived_stats(HIT_POINTS).level_up();
 			update();
 		}
