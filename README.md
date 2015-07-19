@@ -1,7 +1,13 @@
 # Unamed-Rpg
 Rpg Fallout Like
 
----
+# Setup Fab (Windows)
+  run in this order:
+``` 
+1 - setupfabric.bat
+2 - setup2.bat 
+3 - setup3.bat
+``` 
 
 # Development
 <a href="https://trello.com/b/gD8iwWxM/fallout-rpg">To Do tasks - Trello</a>
@@ -14,11 +20,5 @@ Rpg Fallout Like
 
 # Useful links
 
-# Setup Fab (Windows)
-  run in this order:
-``` 
-1 - setupfabric.bat
-2 - setup2.bat 
-3 - setup3.bat
-``` 
+
 
