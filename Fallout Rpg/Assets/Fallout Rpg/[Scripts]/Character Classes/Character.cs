@@ -81,13 +81,14 @@ public class Character : Entity {
 	}
 
 	public void calculate_xp_to_level() {
-		_xp_to_level = (uint)((_level+1 * (_level+1 - 1) / 2) * 1000);
+		_xp_to_level = (uint)(((_level+1) * (_level) / 2) * 1000);
 	}
 
 	public void calculate_level() {
 		if (_xp >= _xp_to_level && _xp_to_level > 0) {
 			_level++;
 			calculate_xp_to_level();
+			Debug.Log(_xp_to_level);
 			get_derived_stats(HIT_POINTS).level_up();
 			update();
 		}

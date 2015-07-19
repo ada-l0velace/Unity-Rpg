@@ -21,9 +21,9 @@ public class CharacterGenerator : Entity {
 		GUI.Label (new Rect (10, 10, 50, 25), "Name: ");
 		_player.name = GUI.TextArea (new Rect (65, 10, 100, 25),_player.name);
 		GUI.Label (new Rect (180, 10, 500, 25), "Level: " + _player.level.ToString() + "(" + _player.xp.ToString() + "/" + _player.xp_to_level.ToString()+ ")");
-		_adding_xp = GUI.TextArea (new Rect (280, 10, 100, 25),_adding_xp);
+		_adding_xp = GUI.TextArea (new Rect (380, 10, 100, 25),_adding_xp);
 		_adding_xp = Regex.Replace(_adding_xp, @"[ ^a-zA-Z ]", "");
-		if(GUI.Button(new Rect(390, 10, 100, 25), "add xp")) {
+		if(GUI.Button(new Rect(490, 10, 100, 25), "add xp")) {
 			_player.add_exp(Convert.ToUInt32(_adding_xp));
 		}
 		for(int i = 0; i < Enum.GetValues(typeof(StatName)).Length;i++){
