@@ -43,7 +43,7 @@ public class AStar: IAStarAI {
         }
 
     }
-
+    
     public void generateMap() {
         //int c = 0; //why was this here?
         AStarNode n;
@@ -52,6 +52,7 @@ public class AStar: IAStarAI {
         List<AStarNode> sides = new List<AStarNode>();
         switch (_orientation) {
             case Orientation.Square:
+                #region square
                 for (int i = 0; i < _mapWidth; i++) {
                     for (int j = 0; j < _mapHeight; j++) {
                         n = this.map[i, j];
@@ -71,9 +72,11 @@ public class AStar: IAStarAI {
                         sides.Clear();
                     }
                 }
+                #endregion
                 break;
 
             case Orientation.Flat:
+                #region flat
                 for (int i = 0; i < _mapWidth; i++) {
                     for (int j = 0; j < _mapHeight; j++) {
                         n = this.map[i, j];
@@ -108,6 +111,51 @@ public class AStar: IAStarAI {
                         sides.Clear();
                     }
                 }
+                #endregion
+                break;
+
+            case Orientation.Pointy:
+                #region pointy
+                for (int i = 0; i < _mapWidth; i++) {
+                    for (int j = 0; j < _mapHeight; j++) {
+                        n = this.map[i, j];
+
+                        if (j + 1 < _mapHeight) {
+                            //NE
+                            sides.Add(this.map[i, j + 1]);
+
+                            //NW
+                            if (i + 1 < _mapWidth)
+                                sides.Add(this.map[i + 1, j + 1]);
+                        }
+
+                        //W
+                        if (i - 1 >= 0)
+                            sides.Add(this.map[i - 1, j]);
+
+                        if (j - 1 >= 0) {
+                            //SE
+                            sides.Add(this.map[i, j - 1]);
+
+                            //SW
+                            if (i + 1 < _mapWidth)
+                                sides.Add(this.map[i + 1, j - 1]);
+                        }
+
+                        //E
+                        if (i + 1 < _mapWidth)
+                            sides.Add(this.map[i + 1, j]);
+
+                        n.Sides = sides.ToArray();
+                        sides.Clear();
+                    }
+                }
+                n = this.map[0, 9];
+                Debug.Log(n.Sides.Length);
+                for (int i = 0; i < n.Sides.Length; i++) {
+                    
+                }
+                #endregion
                 break;
         }
 
@@ -259,6 +307,8 @@ public class AStar: IAStarAI {
     }
 
     public List<Vector2Int> fetchOpenPositionsByArea(AStarNode node, int radius, bool includeStart) {
+        Debug.Log(node.Position + " " + radius);
+        Debug.Log(mapToString());
         clearTempData();
         _openList.Add(node);
         int nodeRadius = 0;
@@ -270,11 +320,13 @@ public class AStar: IAStarAI {
             _openList.Remove(_checkingNode);
             _closedList.Add(_checkingNode);
             nodeRadius = ++_checkingNode.h;
+            Debug.Log(nodeRadius <= radius);
             if (nodeRadius <= radius) {
                 AStarNode[] sides = _checkingNode.Sides;
                 for (int i = 0; i < sides.Length; i++) {
-                    if (openCheckWithRadius(sides[i], nodeRadius))
+                    if (openCheckWithRadius(sides[i], nodeRadius)) {
                         area.Add(sides[i].Position);
+                    }
                 }
             }
         } while (_openList.Count != 0);
@@ -346,9 +398,9 @@ public class AStar: IAStarAI {
             for (int j = 0; j < _mapHeight; j++) {
                 n = map[j, i];
                 if (n.Allowed)
-                    s += "m_x";
-                else
                     s += "o";
+                else
+                    s += "x";
             }
             s += "\n";
         }

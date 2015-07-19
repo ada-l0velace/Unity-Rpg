@@ -24,20 +24,12 @@ public class BattleControl: MonoBehaviour, IBattleControlAI {
 
 
     public void init(int mapHeight, int mapWidth, GridSquareMouseOver grid, Orientation orientation, AStarNode[,] nodes = null) {
+        Debug.Log("Preparing the battlefield...");
         _astar = new AStar(mapHeight, mapWidth, orientation, nodes);
         _ai = new AIControl();
         _faction = new Dictionary<Faction, List<Unit>>();
         _grid = grid;
         //_bac = GetComponent<BattleAnimationControl>();
-    }
-
-    
-
-    public void newBattle() {
-        _turnOrder = new List<Unit>();
-        _turnNumber = _currentTurn = 0;
-        addUnit(FriendlyDummy, new Vector2Int(0, 0), 12, Faction.Player, true);
-        addUnit(EnemyDummy, new Vector2Int(15, 15), 6, Faction.Enemy, false);
 
         block(new Vector2Int(3, 3));
         block(new Vector2Int(4, 4));
@@ -46,6 +38,16 @@ public class BattleControl: MonoBehaviour, IBattleControlAI {
         block(new Vector2Int(6, 6));
         block(new Vector2Int(7, 6));
         block(new Vector2Int(7, 7));
+    }
+
+    
+
+    public void newBattle() {
+        Debug.Log("Preparing battle units...");
+        _turnOrder = new List<Unit>();
+        _turnNumber = _currentTurn = 0;
+        addUnit(FriendlyDummy, new Vector2Int(1, 1), 12, Faction.Player, true);
+        addUnit(EnemyDummy, new Vector2Int(10, 10), 6, Faction.Enemy, false);
 
         _turnLenght = _currentTurn = _turnOrder.Count;
         _ai.init(_faction, _turnOrder, _astar, this);
@@ -70,15 +72,15 @@ public class BattleControl: MonoBehaviour, IBattleControlAI {
 
     private void nextTurn(string reason) {
         ++_turnNumber;
-        //Debug.Log("Turn " + _turnNumber + " " + _currentUnit.Faction + ". " + reason);
         if (++_currentTurn >= _turnLenght)
             _currentTurn = 0;
         _grid.displayUnitsInRange(null);
         _currentUnit = _turnOrder[_currentTurn];
+        Debug.Log("New Turn " + _turnNumber + " " + _currentUnit.Faction + ". " + reason);
         _currentUnit.resetAP();
         _grid.clearAll();
         _grid.setCurrentTile(_currentUnit.node.Position);
-        //Debug.Log("---" + _currentUnit.Faction + " unit turn. ---");
+        //Debug.Log("---" + _currentUnit.Faction + " unit turn. ---" + _currentUnit.PlayerControlable);
         if (_currentUnit.PlayerControlable) {
             _grid.displayArea(_astar.fetchOpenPositionsByArea(
                 _currentUnit.node, _currentUnit.MovementRate, false));

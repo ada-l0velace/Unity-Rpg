@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -60,8 +61,7 @@ public class GridSquareMouseOver: MonoBehaviour {
         _firstTile = null;
         _targetTile = null;
         mouseOnBoard = false;
-        /*GridPainter gp = GetComponent<GridPainter>(); //blocked for Hex, needs workaround
-        battleCommand.init(Mathf.FloorToInt(gp.mapWidth), Mathf.FloorToInt(gp.mapHeight), this);*/
+        /*GridPainter gp = GetComponent<GridPainter>(); //blocked for Hex, needs workaround */
         _grid = GetComponent<HexGrid>();
         _grid.GeneratePoints();
 #if UNITY_EDITOR
@@ -73,6 +73,7 @@ public class GridSquareMouseOver: MonoBehaviour {
     }
 
     public void init() {
+        Debug.Log("Initializing battle mode.");
         battleCommand.init(_grid.width, _grid.height, this, _grid.orientation, _grid.hexes);
         battleCommand.newBattle();
     }
@@ -83,6 +84,7 @@ public class GridSquareMouseOver: MonoBehaviour {
         if (_playerAct) {   //is player turn
             if (mouseOnBoard) {
                 if (_mousePosition.ContainedBy(allowedTiles)) { //within unit range of movement
+
                     if (battleCommand.canCurrentUnitMove)
                         findpath(); //display move path
 
@@ -120,9 +122,9 @@ public class GridSquareMouseOver: MonoBehaviour {
                 List<Vector2Int> path = battleCommand.determinePath(_firstTile, _targetTile);
                 massTileClear("orangeTile");
                 for (int i = 1, m = path.Count - 1; i < m; i++) {
-                    hexSpawn(orangeTile, "orangeTile", new Vector3(path[i].x, 0, path[i].y));
+                    hexSpawn(orangeTile, "orangeTile", new Vector3(path[i].x, 0.01f, path[i].y));
                 }
-                hexSpawn(orangeTile, "orangeTile", new Vector3(_targetTile.x, 0, _targetTile.y));
+                hexSpawn(orangeTile, "orangeTile", new Vector3(_targetTile.x, 0.01f, _targetTile.y));
                 return path;
             }
         }
@@ -137,7 +139,7 @@ public class GridSquareMouseOver: MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000f, _raycastLayer)) {
-            mousePos = hit.point;
+            mousePos = hit.point; //world position that mouse pointer is hovering
 
             mousePos.x = Mathf.Floor(mousePos.x);
             mousePos.z = Mathf.Floor(mousePos.z);
@@ -146,6 +148,7 @@ public class GridSquareMouseOver: MonoBehaviour {
                 mousePos.z += 0.5f; //mouse hits when it should not feel like it hit
 
             if (mousePos != _lastPosition) {
+                //Debug.Log(mousePos);
                 _lastPosition = _selectionCube.position = mousePos;
                 _mousePosition.x = (int)mousePos.x;
                 _mousePosition.y = (int)mousePos.z;
@@ -213,12 +216,18 @@ public class GridSquareMouseOver: MonoBehaviour {
             container = _tileDict[name];
         else
             _tileDict.Add(name, container = new List<Transform>());
-        if (v3.x % 2 != 0)
-            v3.z += 0.5f;
+        if (_grid.orientation == Orientation.Flat) {
+            if (v3.x % 2 != 0)
+                v3.z += 0.5f;
+        } else if (_grid.orientation == Orientation.Pointy) {
+            if (v3.z % 2 != 0)
+                v3.x += 0.5f;
+        }
         Transform t = tile.Spawn(v3);
         t.GetComponent<Renderer>().material.color = obj;
         t.eulerAngles = hexRotation;
         t.localScale = hexScale;
+        t.GetComponentInChildren<Text>().text = "(" + Mathf.Floor(v3.x) + ", " + v3.z + ")";
         container.Add(t);
         return t;
     }
@@ -279,7 +288,7 @@ public class GridSquareMouseOver: MonoBehaviour {
     }
 
     public void playerLock(string reason) {
-        
+
         _playerAct = false;
         //Debug.Log("Player Locked. " + reason);
     }

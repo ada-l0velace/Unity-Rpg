@@ -33,11 +33,12 @@ public class Vector2Int {
 
     public bool ContainedBy(List<Vector2Int> list) {
         Vector2Int value;
-        for (int i = list.Count - 1; i >= 0; i--) {
-            value = list[i];
-            if (x == value.x && y == value.y)
-                return true;
-        }
+        if (list != null)
+            for (int i = list.Count - 1; i >= 0; i--) {
+                value = list[i];
+                if (x == value.x && y == value.y)
+                    return true;
+            }
         return false;
     }
 
