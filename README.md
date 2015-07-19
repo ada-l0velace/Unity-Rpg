@@ -1,7 +1,7 @@
 # Unamed-Rpg
 Rpg Fallout Like
 
-# Setup Fab (Windows)
+# Setup Fabric (Windows)
   run in this order:
 ``` 
 1 - setupfabric.bat
