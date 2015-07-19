@@ -1,24 +1,31 @@
 from fabric.api import local, env
 from fabric.operations import put, run
 from fabric.utils import abort
+import platform
 import os
 #this shit doesn't work on windows for obvious reasons need to check this later
 
 # Do use this if you want to perform an action in virtualenv.
+def detect_os():
+	return platform.system()
+
 def run_in_venv(cmd):
-    local('source venv/bin/activate && ' + cmd, shell='/bin/bash')
+	if (detect_os() != "Windows"):
+		local('source venv/bin/activate && ' + cmd, shell='/bin/bash')
+	else:
+		local('.\.venv\Scripts\activate.bat && ' + cmd, capture=False)
 
 def setup(aliased=False):
-    # set up virtualenv
-    if not ("venv" in os.listdir('.')):
-        local('sudo pip install virtualenv')
-        local('virtualenv venv')
-    run_in_venv('pip install -r requirements.txt')
-    print "Setup successfully done"
+    if (detect_os() != "Windows"):
+		# set up virtualenv
+		if not ("venv" in os.listdir('.')):
+			local('sudo pip install virtualenv')
+			local('virtualenv venv')
+		run_in_venv('pip install -r requirements.txt')
+		print "Setup successfully done"
 
-def update_requirements(arg='s'):
+def update_requirements():
     run_in_venv('pip install -r requirements.txt')
-    install_sdk(arg)
 
 def freeze():
     run_in_venv('pip freeze > requirements.txt')
