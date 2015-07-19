@@ -31,3 +31,8 @@ Fallout Rpg/Icon?
 Fallout Rpg/ehthumbs.db
 Fallout Rpg/[Tt]humbs.db
 
+# ========== #
+#    venv    #
+# ========== #
+
+.venv/
