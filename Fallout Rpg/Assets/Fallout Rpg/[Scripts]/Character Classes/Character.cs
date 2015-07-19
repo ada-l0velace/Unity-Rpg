@@ -6,6 +6,7 @@ public class Character : Entity {
 	private string _name;
 	private int _level;
 	private uint _xp;
+	private uint _xp_to_level;
 	private PrimaryStat [] _primary_stats;
 	private DerivedStat [] _derived_stats;
 	private int STARTING_PSTATS = 5;
@@ -35,8 +36,9 @@ public class Character : Entity {
 
 	public void Awake(){
 		_name = "";
-		_level = 0;
+		_level = 1;
 		_xp = 0;
+		calculate_xp_to_level();
 		_primary_stats = new PrimaryStat[Enum.GetValues (typeof(StatName)).Length];
 		_derived_stats = new DerivedStat[Enum.GetValues (typeof(DerivedName)).Length];
 		setup_primary_stats ();
@@ -68,25 +70,38 @@ public class Character : Entity {
 		set	{ _xp = value;}
 	}
 
+	public uint xp_to_level {
+		get	{ return _xp_to_level;}
+		set	{ _xp_to_level = value;}
+	}
+
 	public void add_exp(uint experience) {
 		_xp +=  experience;
 
 	}
 
-	public void calculate_level() {
-	
+	public void calculate_xp_to_level() {
+		_xp_to_level = (uint)((_level+1 * (_level+1 - 1) / 2) * 1000);
 	}
 
-	public void setup_primary_stats(){
+	public void calculate_level() {
+		if (_xp >= _xp_to_level && _xp_to_level > 0) {
+			_level++;
+			calculate_xp_to_level();
+			get_derived_stats(HIT_POINTS).level_up();
+			update();
+		}
+	}
+
+	public void setup_primary_stats() {
 		for ( int i = 0; i < _primary_stats.Length;i++) {
 			_primary_stats [i] = new PrimaryStat(STARTING_PSTATS);
 		}
 	}
 
-	public void setup_derived_stats(){
+	public void setup_derived_stats() {
 		for ( int i = 0; i < _derived_stats.Length;i++) {
-			switch(i)
-			{
+			switch(i) {
 				case CARRY_WEIGHT:
 					_derived_stats [i] = new DerivedStat(25);
 					break;
@@ -148,9 +163,13 @@ public class Character : Entity {
 		ModifyingStat hit_points_strength = new ModifyingStat (); //Strength modifier for hit points
 		hit_points_strength.primary_stat = get_primary_stats (STRENGTH);
 		hit_points_strength.ratio = 1.0f;
+		ModifyingStat hit_points_xp_endurance = new ModifyingStat (); //Endurance experience level up modifier for hit points
+		hit_points_xp_endurance.primary_stat = get_primary_stats (ENDURANCE);
+		hit_points_xp_endurance.ratio = 5.0f / 2.0f;
 		//adds the modifiers to the stats :D
 		get_derived_stats (HIT_POINTS).add_modifier (hit_points_endurance);
 		get_derived_stats (HIT_POINTS).add_modifier (hit_points_strength);
+		get_derived_stats (HIT_POINTS).add_xp_modifier(hit_points_xp_endurance);
 
 		//Action Points
 		ModifyingStat action_points = new ModifyingStat ();
