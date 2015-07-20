@@ -11,7 +11,7 @@ def detect_os():
 
 def run_in_venv(cmd):
 	if (detect_os() != "Windows"):
-		local('source venv/bin/activate && ' + cmd, shell='/bin/bash')
+		local('source .venv/bin/activate && ' + cmd, shell='/bin/bash')
 	else:
 		local('.\.venv\Scripts\activate.bat & ' + cmd, capture=False)
 
