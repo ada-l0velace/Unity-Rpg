@@ -37,3 +37,10 @@ Fallout Rpg/[Tt]humbs.db
 
 .venv/
 .directory/
+
+# ========= #
+#    SSH    #
+# ========= #
+
+falloutSSH
+falloutSSH.pub
