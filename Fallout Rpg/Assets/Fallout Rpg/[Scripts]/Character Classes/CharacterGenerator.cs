@@ -8,7 +8,8 @@ public class CharacterGenerator : Entity {
 	private string _adding_xp = "0";
 	// Use this for initialization
 	void Start () {
-		_player = new Player ();
+
+		_player = gameObject.AddComponent<Player>();
 		_player.Awake();
 	}
 	
