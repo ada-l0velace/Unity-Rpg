@@ -346,6 +346,7 @@ MonoBehaviour:
   greenTile: {r: 0, g: 1, b: .00689649582, a: 0}
   purpleTile: {r: 1, g: 0, b: .88965559, a: 0}
   orangeFadedTile: {r: 1, g: .752535462, b: .102941155, a: .477999985}
+  debugSideTile: {r: 0, g: 0, b: 0, a: 0}
   hexRotation: {x: 90, y: 0, z: 0}
   hexScale: {x: 60, y: 60, z: .0299999993}
 --- !u!114 &938516471

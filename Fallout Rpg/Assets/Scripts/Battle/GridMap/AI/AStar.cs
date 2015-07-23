@@ -18,15 +18,22 @@ public class AStar: IAStarAI {
     private AStarNode[,] map;
     private int _mapWidth;
     private int _mapHeight;
-    private Orientation _orientation;
+    private CellShape _cellShape;
 
-    public AStar(int mapHeight, int mapWidth, Orientation orientation, AStarNode[,] map = null) {
+    /// <summary>
+    /// Construtor for pathfinding system, compatible with square and hex(pointy and flat) based grids
+    /// </summary>
+    /// <param name="mapHeight">Amount of cells from bottom to top</param>
+    /// <param name="mapWidth">Amount of cells from left to right</param>
+    /// <param name="cellShape">Shape of the cell</param>
+    /// <param name="map">Use a pre-created file map</param>
+    public AStar(int mapHeight, int mapWidth, CellShape cellShape, AStarNode[,] map = null) {
         _mapHeight = mapHeight;
         _mapWidth = mapWidth;
         _openList = new List<AStarNode>();
         _closedList = new List<AStarNode>();
-        _orientation = orientation;
-        if (orientation == Orientation.Square) {
+        _cellShape = cellShape;
+        if (cellShape == CellShape.Square) {
             this.map = new AStarNode[_mapHeight, _mapWidth];
             for (int i = 0; i < _mapHeight; i++) {
                 for (int j = 0; j < _mapWidth; j++) {
@@ -43,15 +50,19 @@ public class AStar: IAStarAI {
         }
 
     }
-    
+
+    /// <summary>
+    /// Builds the A* links cell by cell
+    /// Could probably use optimizing
+    /// </summary>
     public void generateMap() {
         //int c = 0; //why was this here?
         AStarNode n;
 
 
         List<AStarNode> sides = new List<AStarNode>();
-        switch (_orientation) {
-            case Orientation.Square:
+        switch (_cellShape) {
+            case CellShape.Square:
                 #region square
                 for (int i = 0; i < _mapWidth; i++) {
                     for (int j = 0; j < _mapHeight; j++) {
@@ -75,7 +86,7 @@ public class AStar: IAStarAI {
                 #endregion
                 break;
 
-            case Orientation.Flat:
+            case CellShape.Flat:
                 #region flat
                 for (int i = 0; i < _mapWidth; i++) {
                     for (int j = 0; j < _mapHeight; j++) {
@@ -114,31 +125,34 @@ public class AStar: IAStarAI {
                 #endregion
                 break;
 
-            case Orientation.Pointy:
+            case CellShape.Pointy:
                 #region pointy
                 for (int i = 0; i < _mapWidth; i++) {
                     for (int j = 0; j < _mapHeight; j++) {
                         n = this.map[i, j];
 
-                        if (j + 1 < _mapHeight) {
-                            //NE
+                        if (j + 1 < _mapHeight) { //north
                             sides.Add(this.map[i, j + 1]);
 
-                            //NW
-                            if (i + 1 < _mapWidth)
+                            if (j % 2 == 0) {
+                                if (i - 1 >= 0)
+                                    sides.Add(this.map[i - 1, j + 1]);
+                            } else if (i + 1 < _mapWidth)
                                 sides.Add(this.map[i + 1, j + 1]);
                         }
 
-                        //W
-                        if (i - 1 >= 0)
+
+                        if (i - 1 >= 0) //W
                             sides.Add(this.map[i - 1, j]);
 
-                        if (j - 1 >= 0) {
-                            //SE
-                            sides.Add(this.map[i, j - 1]);
 
-                            //SW
-                            if (i + 1 < _mapWidth)
+                        if (j - 1 >= 0) { //south
+                            sides.Add(this.map[i, j - 1]);
+                            if (j % 2 == 0) {
+                                if (i - 1 >= 0)
+                                    sides.Add(this.map[i - 1, j - 1]);
+
+                            } else if (i + 1 < _mapWidth)
                                 sides.Add(this.map[i + 1, j - 1]);
                         }
 
@@ -149,11 +163,6 @@ public class AStar: IAStarAI {
                         n.Sides = sides.ToArray();
                         sides.Clear();
                     }
-                }
-                n = this.map[0, 9];
-                Debug.Log(n.Sides.Length);
-                for (int i = 0; i < n.Sides.Length; i++) {
-                    
                 }
                 #endregion
                 break;
@@ -307,8 +316,6 @@ public class AStar: IAStarAI {
     }
 
     public List<Vector2Int> fetchOpenPositionsByArea(AStarNode node, int radius, bool includeStart) {
-        Debug.Log(node.Position + " " + radius);
-        Debug.Log(mapToString());
         clearTempData();
         _openList.Add(node);
         int nodeRadius = 0;
@@ -320,7 +327,6 @@ public class AStar: IAStarAI {
             _openList.Remove(_checkingNode);
             _closedList.Add(_checkingNode);
             nodeRadius = ++_checkingNode.h;
-            Debug.Log(nodeRadius <= radius);
             if (nodeRadius <= radius) {
                 AStarNode[] sides = _checkingNode.Sides;
                 for (int i = 0; i < sides.Length; i++) {
@@ -416,7 +422,10 @@ public class AStar: IAStarAI {
     }
 }
 
-public enum Orientation {
+/// <summary>
+/// Defines the shape of the cell in the A* system
+/// </summary>
+public enum CellShape {
     /// <summary>
     /// Regular square
     /// </summary>

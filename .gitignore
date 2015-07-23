@@ -36,11 +36,6 @@ Fallout Rpg/[Tt]humbs.db
 # ========== #
 
 .venv/
+.venb/
 .directory/
-
-# ========= #
-#    SSH    #
-# ========= #
-
-falloutSSH
-falloutSSH.pub
+.ssh/

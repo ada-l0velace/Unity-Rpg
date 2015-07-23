@@ -12,7 +12,7 @@ public class HexGrid: MonoBehaviour {
     private float pixelHeight;
 
     public GameObject target;
-    public Orientation orientation;
+    public CellShape orientation;
     public int width;
     public int height;
     public float side;
@@ -37,13 +37,13 @@ public class HexGrid: MonoBehaviour {
         float hexWidth = 0;
         float hexHeight = 0;
         switch (orientation) {
-            case Orientation.Flat:
+            case CellShape.Flat:
                 hexWidth = side + h;
                 hexHeight = r + r;
                 this.pixelWidth = (width * hexWidth) + h;
                 this.pixelHeight = (height * hexHeight) + r;
                 break;
-            case Orientation.Pointy:
+            case CellShape.Pointy:
                 hexWidth = r + r;
                 hexHeight = side + h;
                 this.pixelWidth = (width * hexWidth) + r;
@@ -125,10 +125,10 @@ public class HexGrid: MonoBehaviour {
                 if (isTopLeft) {
                     //First hex
                     switch (orientation) {
-                        case Orientation.Flat:
+                        case CellShape.Flat:
                             hexes[0, 0] = new Hex(0 + h + xOffset, 0 + yOffset, side, orientation, new Vector2Int(0,0));
                             break;
-                        case Orientation.Pointy:
+                        case CellShape.Pointy:
                             hexes[0, 0] = new Hex(0 + r + xOffset, 0 + yOffset, side, orientation, new Vector2Int(0, 0));
                             break;
                         default:
@@ -139,7 +139,7 @@ public class HexGrid: MonoBehaviour {
 
                 } else {
                     switch (orientation) {
-                        case Orientation.Flat:
+                        case CellShape.Flat:
                             if (inLeftColumn) {
                                 // Calculate from hex above
                                 hexes[i, j] = new Hex(hexes[i - 1, j].Points[(int)FlatVertice.BottomLeft], side, orientation, new Vector2Int(i, j));
@@ -158,7 +158,7 @@ public class HexGrid: MonoBehaviour {
                                 }
                             }
                             break;
-                        case Orientation.Pointy:
+                        case CellShape.Pointy:
                             if (inLeftColumn) {
                                 // Calculate from hex above and need to stagger the weakRows
                                 if (i % 2 == 0) {

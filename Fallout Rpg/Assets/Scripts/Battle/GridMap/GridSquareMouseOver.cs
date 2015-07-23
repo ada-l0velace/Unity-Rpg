@@ -33,6 +33,7 @@ public class GridSquareMouseOver: MonoBehaviour {
     public Color greenTile;
     public Color purpleTile;
     public Color orangeFadedTile;
+    public Color debugSideTile;
     public Vector3 hexRotation;
     public Vector3 hexScale;
 
@@ -83,6 +84,7 @@ public class GridSquareMouseOver: MonoBehaviour {
         setPosition(); //grabs the m_x,m_y position compatible with A*
         if (_playerAct) {   //is player turn
             if (mouseOnBoard) {
+                debugAstarTileLink();
                 if (_mousePosition.ContainedBy(allowedTiles)) { //within unit range of movement
 
                     if (battleCommand.canCurrentUnitMove)
@@ -110,6 +112,26 @@ public class GridSquareMouseOver: MonoBehaviour {
         if (Input.GetKeyDown(KeyMap.ToggleGUI))
             displayGUI = !displayGUI;
 
+    }
+
+    /// <summary>
+    /// Call to display AStarNode.sides visually, debug use only
+    /// </summary>
+    private void debugAstarTileLink() {
+        massTileClear("debugSideTile");
+        if (_targetTile.x < _grid.width && _targetTile.y < _grid.height && _targetTile.x >= 0 && _targetTile.y >= 0) {
+            AStarNode asn = battleCommand.GetNode(_targetTile);
+            if (asn != null) {
+                AStarNode[] n = asn.Sides;
+                Vector2Int v;
+                for (int i = 0; i < n.Length; i++) {
+                    v = n[i].Position;
+                    hexSpawn(debugSideTile, "debugSideTile", new Vector3(v.x, 0.01f, v.y));
+                }
+            } else {
+                Debug.LogError("Null node detected " + _targetTile);
+            }
+        }
     }
 
 
@@ -216,10 +238,10 @@ public class GridSquareMouseOver: MonoBehaviour {
             container = _tileDict[name];
         else
             _tileDict.Add(name, container = new List<Transform>());
-        if (_grid.orientation == Orientation.Flat) {
+        if (_grid.orientation == CellShape.Flat) {
             if (v3.x % 2 != 0)
                 v3.z += 0.5f;
-        } else if (_grid.orientation == Orientation.Pointy) {
+        } else if (_grid.orientation == CellShape.Pointy) {
             if (v3.z % 2 != 0)
                 v3.x += 0.5f;
         }

@@ -23,7 +23,7 @@ public class BattleControl: MonoBehaviour, IBattleControlAI {
 
 
 
-    public void init(int mapHeight, int mapWidth, GridSquareMouseOver grid, Orientation orientation, AStarNode[,] nodes = null) {
+    public void init(int mapHeight, int mapWidth, GridSquareMouseOver grid, CellShape orientation, AStarNode[,] nodes = null) {
         Debug.Log("Preparing the battlefield...");
         _astar = new AStar(mapHeight, mapWidth, orientation, nodes);
         _ai = new AIControl();
@@ -47,7 +47,8 @@ public class BattleControl: MonoBehaviour, IBattleControlAI {
         _turnOrder = new List<Unit>();
         _turnNumber = _currentTurn = 0;
         addUnit(FriendlyDummy, new Vector2Int(1, 1), 12, Faction.Player, true);
-        addUnit(EnemyDummy, new Vector2Int(10, 10), 6, Faction.Enemy, false);
+        addUnit(EnemyDummy, new Vector2Int(9, 9), 6, Faction.Enemy, false);
+        addUnit(EnemyDummy, new Vector2Int(8, 8), 6, Faction.Enemy, false);
 
         _turnLenght = _currentTurn = _turnOrder.Count;
         _ai.init(_faction, _turnOrder, _astar, this);
@@ -102,7 +103,7 @@ public class BattleControl: MonoBehaviour, IBattleControlAI {
         Vector2Int lastPos = path[path.Count - 1];
         if (_astar.isNodeOpen(lastPos)) {
             _astar.giveUnit(lastPos, _currentUnit.node.FetchUnit);
-            _currentUnit.runAnimation(BattleActions.Move, path);
+            _currentUnit.runAnimation(BattleActions.Move, path, OnMoveAnimationCompleted);
             _grid.playerLock("TileClicked.");
             /* BLOCKED FOR ANIMATION CODING
              * CHANGE AFTERWARDS
@@ -118,6 +119,12 @@ public class BattleControl: MonoBehaviour, IBattleControlAI {
         return false;
     }
 
+    private void OnMoveAnimationCompleted() {
+        //missing position adjustment
+        
+        nextTurn("End of Move Animation.");
+    }
+
     /// <summary>
     /// Use Vector2Int version instead
     /// </summary>
@@ -128,7 +135,7 @@ public class BattleControl: MonoBehaviour, IBattleControlAI {
         Vector2Int lastPos = path[path.Count - 1];
         if (_astar.isNodeOpen(lastPos)) {
             _astar.giveUnit(lastPos, _currentUnit.node.FetchUnit);
-            _currentUnit.runAnimation(BattleActions.Move, path);
+            _currentUnit.runAnimation(BattleActions.Move, path, OnMoveAnimationCompleted);
             _grid.playerLock("TileClicked.");
             /* BLOCKED FOR ANIMATION CODING
              * CHANGE AFTERWARDS
@@ -241,5 +248,14 @@ public class BattleControl: MonoBehaviour, IBattleControlAI {
         get {
             return !_currentUnit.hasMoved;
         }
+    }
+
+    /// <summary>
+    /// Fetchs node at given position
+    /// </summary>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public AStarNode GetNode(Vector2Int target) {
+        return _astar.GetNode(target);
     }
 }

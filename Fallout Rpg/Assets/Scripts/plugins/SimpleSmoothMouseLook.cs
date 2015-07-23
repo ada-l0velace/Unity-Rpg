@@ -23,7 +23,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
  
     void Start()
     {
-        // Set target direction to the camera's initial orientation.
+        // Set target direction to the camera's initial cellShape.
         targetDirection = transform.localRotation.eulerAngles;
  
         // Set target direction for the character body to its inital state.

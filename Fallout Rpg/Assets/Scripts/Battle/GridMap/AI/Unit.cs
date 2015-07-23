@@ -17,6 +17,10 @@ public class Unit: MonoBehaviour, IUnitMovement {
 
     public AStarNode node;
 
+    public delegate void OnMoveAnimationCompletedEvent();
+    public OnMoveAnimationCompletedEvent onMoveAnimationCompleted;
+    private OnMoveAnimationCompletedEvent removeMeOnNextCall;
+
     public void init(int movementRate, Faction faction, bool playerControlable) {
         _moveRate = movementRate;
         _playerControlable = playerControlable;
@@ -72,12 +76,14 @@ public class Unit: MonoBehaviour, IUnitMovement {
         enabled = false;
     }
 
-    public void runAnimation(BattleActions action, List<Vector2Int> path) {
+    public void runAnimation(BattleActions action, List<Vector2Int> path, OnMoveAnimationCompletedEvent func) {
         //Debug.Log("Animation requested.");
         _ba = action;
         _path = path;
         switch (action) {
             case BattleActions.Move:
+                onMoveAnimationCompleted += func;
+                removeMeOnNextCall += func;
                 _ums.begin(_path);
                 break;
             default:
@@ -88,6 +94,9 @@ public class Unit: MonoBehaviour, IUnitMovement {
 
     public void movementDone() {
         _hasMoved = true;
+        onMoveAnimationCompleted();
+        onMoveAnimationCompleted -= removeMeOnNextCall;
+        removeMeOnNextCall = null;
     }
 
     public void resetAP() {

@@ -7,27 +7,27 @@ public class Hex : AStarNode {
     private float m_side;
     private float m_h;
     private float m_r;
-    private Orientation m_orientation;
+    private CellShape m_orientation;
     private float m_x;
     private float m_y;
 
     /// <param name="m_side">length of one m_side of the hexagon</param>
-    public Hex(int x, int y, int side, Orientation orientation, Vector2Int pos) : base(pos, 6) {
+    public Hex(int x, int y, int side, CellShape orientation, Vector2Int pos) : base(pos, 6) {
         Initialize((float)x, (float)y, (float)side, orientation);
     }
 
-    public Hex(float x, float y, float side, Orientation orientation, Vector2Int pos) : base(pos, 6) {
+    public Hex(float x, float y, float side, CellShape orientation, Vector2Int pos) : base(pos, 6) {
         Initialize(x, y, side, orientation);
     }
 
-    public Hex(Vector2 point, float side, Orientation orientation, Vector2Int pos) : base(pos, 6) {
+    public Hex(Vector2 point, float side, CellShape orientation, Vector2Int pos) : base(pos, 6) {
         Initialize(point.x, point.y, side, orientation);
     }
 
     /// <summary>
     /// Sets internal fields and calls CalculateVertices()
     /// </summary>
-    private void Initialize(float x, float y, float side, Orientation orientation) {
+    private void Initialize(float x, float y, float side, CellShape orientation) {
         this.m_x = x;
         this.m_y = y;
         this.m_side = side;
@@ -72,7 +72,7 @@ public class Hex : AStarNode {
         m_r = HexMath.CalculateR(m_side);
 
         switch (m_orientation) {
-            case Orientation.Flat:
+            case CellShape.Flat:
                 // m_x,m_y coordinates are top left point
                 m_points = new Vector2[6];
                 m_points[0] = new Vector2(m_x, m_y);
@@ -82,7 +82,7 @@ public class Hex : AStarNode {
                 m_points[4] = new Vector2(m_x, m_y + m_r + m_r);
                 m_points[5] = new Vector2(m_x - m_h, m_y + m_r);
                 break;
-            case Orientation.Pointy:
+            case CellShape.Pointy:
                 //m_x,m_y coordinates are top center point
                 m_points = new Vector2[6];
                 m_points[0] = new Vector2(m_x, m_y);
@@ -93,13 +93,13 @@ public class Hex : AStarNode {
                 m_points[5] = new Vector2(m_x - m_r, m_y + m_h);
                 break;
             default:
-                throw new Exception("No Orientation defined for Hex object.");
+                throw new Exception("No CellShape defined for Hex object.");
 
         }
 
     }
 
-    public Orientation Orientation {
+    public CellShape Orientation {
         get {
             return m_orientation;
         }

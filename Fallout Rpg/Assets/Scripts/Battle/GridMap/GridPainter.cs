@@ -16,7 +16,7 @@ public class GridPainter: MonoBehaviour {
 
     void Start() {
         createMat();
-        /*Board b = new Board(10,10,30, Orientation.Flat);
+        /*Board b = new Board(10,10,30, CellShape.Flat);
         GraphicsEngine gfxe = new GraphicsEngine(b, 0, 0);
         gfxe.Draw();*/
     }
