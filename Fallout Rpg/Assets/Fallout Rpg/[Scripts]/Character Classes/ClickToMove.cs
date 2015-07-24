@@ -2,46 +2,53 @@
 using System.Collections;
 
 public class ClickToMove : MonoBehaviour {
-	public float _speed;
-	private Vector3 dest_pos;
 	private Vector3 _pos;
-	public CharacterController controler;
-	private Vector3 targetPosition;
 	private Vector3 directionVector;
-	public float smooth;
-	public GameObject player;
-	public float stopDistance = 0.1f;
+	public float stopDistance = 1.8f;
 	private float destinationDistance;
 	private Quaternion targetRotation;
-	public float rotateSpeed = 90f;
-	public Vector3 myold;
-	//CharacterMotor motor;
+	public float rotateSpeed = 10f;
+	public RaycastHit hit;
+	private string _animation;
+	public Texture2D cursorImage;
+	public Texture2D cursorImage_run;
+	private int cursorWidth = 32;
+	private int cursorHeight = 32;
 	// Use this for initialization
 	void Start () {
-		//targetPosition = GameObject.Find("Player Spawn Point").transform.position;
-		transform.Rotate(0,0,0);
+		hit.point = GameObject.Find("Player Spawn Point").transform.position;
+
+		//Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButton(0)) {
-			locate_position();
-		}
+		locate_position();
+	}
+
+	void OnGUI(){
+		GUI.DrawTexture(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y, cursorWidth, cursorHeight), cursorImage); 
 	}
 
 	void locate_position() {
-		RaycastHit hit;
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		if(Physics.Raycast(ray, out hit,1000)){
-			myold = transform.position;
-			_pos = new Vector3(hit.point.x,hit.point.y,hit.point.z);
-			dest_pos = hit.point;
-			directionVector = hit.point - transform.position;
-			directionVector.y = 0;
-			// 
+
+		//GetComponent<Animation>().Play("idle");
+		if(Input.GetMouseButton(0)) {
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if(Physics.Raycast(ray, out hit,1000)){
+				_pos = new Vector3(hit.point.x,hit.point.y,hit.point.z);
+				directionVector = hit.point - transform.position;
+				directionVector.y = 0;
+			}
+
 		}
+		Cursor.SetCursor(cursorImage,Vector2.zero,CursorMode.Auto);
 		move_to_position(hit);
 
+	}
+	void play_animation(string animation) {
+			_animation = animation;
+			GetComponent<Animation>().Play(_animation);
 	}
 
 	void move_to_position(RaycastHit hit) {
@@ -50,12 +57,16 @@ public class ClickToMove : MonoBehaviour {
 		destinationDistance = destDir.magnitude; // get the horizontal distance
 		// object doesn't anything if below stopDistance:
 		if (destinationDistance >= stopDistance){ // if farther than stopDistance...
+			play_animation("run");
 			targetRotation = Quaternion.LookRotation(destDir); // update target rotation...
 			// turn gradually to target direction each frame:
 			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
 			// move in its local forward direction (Translate default):
 			transform.Translate(Vector3.forward * 4.5f * Time.deltaTime);  // move in forward direction 
 		}//end if
-		
+		else
+			play_animation("idle");
+
 	}
+
 }
