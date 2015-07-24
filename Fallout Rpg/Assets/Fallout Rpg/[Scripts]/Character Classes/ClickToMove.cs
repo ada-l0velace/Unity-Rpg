@@ -42,7 +42,7 @@ public class ClickToMove : MonoBehaviour {
 			}
 
 		}
-		Cursor.SetCursor(cursorImage,Vector2.zero,CursorMode.Auto);
+		//Cursor.SetCursor(cursorImage,Vector2.zero,CursorMode.Auto);
 		move_to_position(hit);
 
 	}
