@@ -23,7 +23,8 @@ public class ClickToMove : MonoBehaviour {
 		//Cursor.visible = false;
 	}
 	public void OnPathFound(Vector3 [] new_path, bool path_succeful) {
-		if ( path_succeful ) {
+		if ( path_succeful && new_path.Length > 0) {
+			targetIndex = 0;
 			_path = new_path;
 			StopCoroutine("FollowPath");
 			StartCoroutine("FollowPath");
@@ -45,7 +46,9 @@ public class ClickToMove : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			if(Physics.Raycast(ray, out hit,1000)){
 				_pos = new Vector3(hit.point.x,hit.point.y,hit.point.z);
-				Debug.Log(_pos.x + "," +_pos.y + "," +_pos.z);
+				///Debug.Log(_pos.x + "," +_pos.y + "," +_pos.z);
+				//
+				//_path = new Vector3[0];
 				PathRequestManager.RequestPath(transform.position,_pos, OnPathFound);
 				directionVector = hit.point - transform.position;
 				directionVector.y = 0;
@@ -60,7 +63,6 @@ public class ClickToMove : MonoBehaviour {
 
 	IEnumerator FollowPath() {
 		Vector3 currentWaypoint = _path[0];
-		
 		while (true) {
 			// calculate the current target direction
 			Vector3 destDir = currentWaypoint - transform.position;
