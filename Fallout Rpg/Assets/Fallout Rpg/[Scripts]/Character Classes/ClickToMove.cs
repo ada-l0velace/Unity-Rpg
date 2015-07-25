@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ClickToMove : MonoBehaviour {
 	private Vector3 _pos;
+	private Vector3 [] _path;
+	int targetIndex;
 	private Vector3 directionVector;
 	public float stopDistance = 1.8f;
 	private float destinationDistance;
@@ -20,7 +22,13 @@ public class ClickToMove : MonoBehaviour {
 
 		//Cursor.visible = false;
 	}
-	
+	public void OnPathFound(Vector3 [] new_path, bool path_succeful) {
+		if ( path_succeful ) {
+			_path = new_path;
+			StopCoroutine("FollowPath");
+			StartCoroutine("FollowPath");
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 		locate_position();
@@ -37,17 +45,39 @@ public class ClickToMove : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			if(Physics.Raycast(ray, out hit,1000)){
 				_pos = new Vector3(hit.point.x,hit.point.y,hit.point.z);
+				Debug.Log(_pos.x + "," +_pos.y + "," +_pos.z);
+				PathRequestManager.RequestPath(transform.position,_pos, OnPathFound);
 				directionVector = hit.point - transform.position;
 				directionVector.y = 0;
+
 			}
 
 		}
 		//Cursor.SetCursor(cursorImage,Vector2.zero,CursorMode.Auto);
-		move_to_position(hit);
+		//move_to_position(hit);
 
 	}
 
-
+	IEnumerator FollowPath() {
+		Vector3 currentWaypoint = _path[0];
+		
+		while (true) {
+			if (transform.position == currentWaypoint) {
+				targetIndex ++;
+				if (targetIndex >= _path.Length) {
+					play_animation("idle");
+					targetIndex = 0;
+					_path = new Vector3[0];
+					yield break;
+				}
+				currentWaypoint = _path[targetIndex];
+			}
+			play_animation("run");
+			transform.position = Vector3.MoveTowards(transform.position,currentWaypoint,4.5f * Time.deltaTime);
+			yield return null;
+			
+		}
+	}
 
 	void play_animation(string animation) {
 			_animation = animation;
@@ -66,10 +96,27 @@ public class ClickToMove : MonoBehaviour {
 			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
 			// move in its local forward direction (Translate default):
 			transform.Translate(Vector3.forward * 4.5f * Time.deltaTime);  // move in forward direction 
+
 		}//end if
 		else
 			play_animation("idle");
 
+	}
+
+	public void OnDrawGizmos() {
+		if (_path != null) {
+			for (int i = targetIndex; i < _path.Length; i ++) {
+				Gizmos.color = Color.black;
+				Gizmos.DrawCube(_path[i], Vector3.one);
+				
+				if (i == targetIndex) {
+					Gizmos.DrawLine(transform.position, _path[i]);
+				}
+				else {
+					Gizmos.DrawLine(_path[i-1],_path[i]);
+				}
+			}
+		}
 	}
 
 }

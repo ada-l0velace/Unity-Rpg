@@ -7,6 +7,7 @@ public class Grid : MonoBehaviour {
 	public Vector2 _grid_world_size;
 	public float _node_radius;
 	public Node[,] _grid;
+	public bool only_draw_path_gizmos;
 
 	float _node_diameter;
 	int _grid_size_x, _grid_size_y;
@@ -25,20 +26,40 @@ public class Grid : MonoBehaviour {
 		//_path = _alg.dijkstra(seeker.position, target.position);
 
 	}
-	public List<Node> _path;
+
+	public int max_size {
+		get {
+			return _grid_size_x * _grid_size_y;	
+		}
+	}
+
+	//public List<Node> _path;
 	void OnDrawGizmos(){
 		Gizmos.DrawWireCube(transform.position, new Vector3(_grid_world_size.x,1,_grid_world_size.y));
-		if (_grid != null){
+		/*
+		if(only_draw_path_gizmos){
+			if(_path != null){
+				foreach(Node n in _path) {
+					Gizmos.color = Color.black;
+					Gizmos.DrawCube(n._world_position, Vector3.one * (_node_diameter-.1f));
+				}
+			}
+		}
+		else {
+		*/
+		/*
+		if (_grid != null) {
 			foreach(Node n in _grid) {
-				Gizmos.color = (n._walkable) ? Color.green : Color.red;
-				if(_path != null){
+				Gizmos.color = (n._walkable) ? Color.green : Color.red;*/
+				/*if(_path != null){
 					if (_path.Contains(n)){
 						Gizmos.color = Color.black;
 					}
-				}
-				Gizmos.DrawCube(n._world_position, Vector3.one * (_node_diameter-.1f))	;
+				}*/
+				/*Gizmos.DrawCube(n._world_position, Vector3.one * (_node_diameter-.1f))	;
 			}
-		}
+		}*/
+		/*	}*/
 	}
 
 	public List<Node> GetNeighbours(Node node) {
@@ -68,8 +89,8 @@ public class Grid : MonoBehaviour {
 		percentY = Mathf.Clamp01(percentY);
 		int x = Mathf.RoundToInt((_grid_size_x-1) * percentX);
 		int y = Mathf.RoundToInt((_grid_size_y-1) * percentY);
-		Debug.Log (x +" x");
-		Debug.Log (y +" y");
+		//Debug.Log (x +" x");
+		//Debug.Log (y +" y");
 		return _grid[x,y];
 	}
 
