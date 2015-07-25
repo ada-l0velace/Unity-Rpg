@@ -62,7 +62,11 @@ public class ClickToMove : MonoBehaviour {
 		Vector3 currentWaypoint = _path[0];
 		
 		while (true) {
-			if (transform.position == currentWaypoint) {
+			// calculate the current target direction
+			Vector3 destDir = currentWaypoint - transform.position;
+			destinationDistance = destDir.magnitude; // get the horizontal distance
+
+			if (destinationDistance <= stopDistance) {
 				targetIndex ++;
 				if (targetIndex >= _path.Length) {
 					play_animation("idle");
@@ -73,7 +77,17 @@ public class ClickToMove : MonoBehaviour {
 				currentWaypoint = _path[targetIndex];
 			}
 			play_animation("run");
-			transform.position = Vector3.MoveTowards(transform.position,currentWaypoint,4.5f * Time.deltaTime);
+
+			// object doesn't anything if below stopDistance:
+			if (destinationDistance >= stopDistance){ // if farther than stopDistance...
+				targetRotation = Quaternion.LookRotation(destDir); // update target rotation...
+				// turn gradually to target direction each frame:
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+				// move in its local forward direction (Translate default):
+				transform.Translate(Vector3.forward * 4.5f * Time.deltaTime);  // move in forward direction 
+				//transform.position = Vector3.MoveTowards(transform.position,currentWaypoint,4.5f * Time.deltaTime);
+			}//end if
+			//transform.position = Vector3.MoveTowards(transform.position,currentWaypoint,4.5f * Time.deltaTime);
 			yield return null;
 			
 		}
