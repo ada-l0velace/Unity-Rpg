@@ -27,7 +27,7 @@ public class ClickToMove : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GUI.DrawTexture(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y, cursorWidth, cursorHeight), cursorImage); 
+//		GUI.DrawTexture(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y, cursorWidth, cursorHeight), cursorImage); 
 	}
 
 	void locate_position() {
@@ -46,6 +46,9 @@ public class ClickToMove : MonoBehaviour {
 		move_to_position(hit);
 
 	}
+
+
+
 	void play_animation(string animation) {
 			_animation = animation;
 			GetComponent<Animation>().Play(_animation);
