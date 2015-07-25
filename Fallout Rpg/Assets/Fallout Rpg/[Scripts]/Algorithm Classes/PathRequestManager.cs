@@ -15,7 +15,7 @@ public class PathRequestManager : MonoBehaviour {
 	bool is_processing_path;
 
 	void Awake() {
-		Debug.Log("I'm awake");
+		//Debug.Log("I'm awake");
 		instance = this;
 		path_finding = GetComponent<PathFinding>();
 	}

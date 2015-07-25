@@ -25,8 +25,8 @@ public class PathFinding : MonoBehaviour {
 	}
 
 	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos) {
-		Stopwatch sw = new Stopwatch();
-		sw.Start();
+		//Stopwatch sw = new Stopwatch();
+		//sw.Start();
 
 		Vector3[] waypoints = new Vector3 [0];
 		bool path_sucess = false;
@@ -51,8 +51,8 @@ public class PathFinding : MonoBehaviour {
 				closedSet.Add(currentNode);
 				
 				if (currentNode == targetNode) {
-					sw.Stop();
-					print ("Path found: " + sw.ElapsedMilliseconds + " ms");
+					//sw.Stop();
+					//print ("Path found: " + sw.ElapsedMilliseconds + " ms");
 					//RetracePath(startNode,targetNode);
 					//return;
 					path_sucess = true;
