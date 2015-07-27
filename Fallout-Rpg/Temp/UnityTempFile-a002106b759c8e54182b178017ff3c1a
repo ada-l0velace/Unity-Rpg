@@ -1,0 +1,149 @@
+-debug
+-target:library
+-nowarn:0169
+-out:Temp/Assembly-CSharp.dll
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll"
+-define:UNITY_5_1_1
+-define:UNITY_5_1
+-define:UNITY_5
+-define:ENABLE_NEW_BUGREPORTER
+-define:ENABLE_2D_PHYSICS
+-define:ENABLE_4_6_FEATURES
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_FRAME_DEBUGGER
+-define:ENABLE_GENERICS
+-define:ENABLE_HOME_SCREEN
+-define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_LIGHT_PROBES_LEGACY
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_PHYSICS_PHYSX3
+-define:ENABLE_PLUGIN_INSPECTOR
+-define:ENABLE_SHADOWS
+-define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
+-define:ENABLE_SPRITES
+-define:ENABLE_TERRAIN
+-define:ENABLE_UNET
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_VR
+-define:ENABLE_WEBCAM
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_UNET
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_AUDIOMIXER_SUSPEND
+-define:ENABLE_EDITOR_METRICS
+-define:INCLUDE_DYNAMIC_GI
+-define:INCLUDE_GI
+-define:INCLUDE_IL2CPP
+-define:INCLUDE_DIRECTX12
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_LOCALIZATION
+-define:UNITY_STANDALONE_WIN
+-define:UNITY_STANDALONE
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_TEXTUREID_MAP
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_WEBSOCKET_HOST
+-define:ENABLE_MONO
+-define:ENABLE_PROFILER
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_32
+-define:UNITY_EDITOR_WIN
+"Assets/Fallout-Rpg/[Scripts]/Algorithm-Classes/Dijkstra.cs"
+"Assets/Fallout-Rpg/[Scripts]/Algorithm-Classes/Dummys/MoveSeeker.cs"
+"Assets/Fallout-Rpg/[Scripts]/Algorithm-Classes/Grid.cs"
+"Assets/Fallout-Rpg/[Scripts]/Algorithm-Classes/Heap.cs"
+"Assets/Fallout-Rpg/[Scripts]/Algorithm-Classes/Node.cs"
+"Assets/Fallout-Rpg/[Scripts]/Algorithm-Classes/PathFinding.cs"
+"Assets/Fallout-Rpg/[Scripts]/Algorithm-Classes/PathRequestManager.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/Animations/AnimationCharacter.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/BaseStat.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/Character.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/CharacterGenerator.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/CharacterMotor.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/ClickToMove.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/DerivedStat.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/GameMaster.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/ModifiedStat.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/Player.cs"
+"Assets/Fallout-Rpg/[Scripts]/Character Classes/PrimaryStat.cs"
+"Assets/Fallout-Rpg/[Scripts]/Global Classes/Entity.cs"
+"Assets/Fallout-Rpg/[Scripts]/Items/ISObject.cs"
+"Assets/Fallout-Rpg/[Scripts]/Items/ISRarity.cs"
+"Assets/Fallout-Rpg/[Scripts]/Items/Interfaces/IISObject.cs"
+"Assets/Fallout-Rpg/[Scripts]/Items/Interfaces/IISRarity.cs"
+"Assets/Fallout-Rpg/[Scripts]/Main Menu Classes/MainMenuHandler.cs"
+Assets/Scripts/Battle/BattleActions.cs
+Assets/Scripts/Battle/BattleAnimationControl.cs
+Assets/Scripts/Battle/BattleControl.cs
+Assets/Scripts/Battle/Faction.cs
+Assets/Scripts/Battle/GridMap/AI/AIControl.cs
+Assets/Scripts/Battle/GridMap/AI/AStar.cs
+Assets/Scripts/Battle/GridMap/AI/AStarNode.cs
+Assets/Scripts/Battle/GridMap/AI/IAStarAI.cs
+Assets/Scripts/Battle/GridMap/AI/IUnitMovement.cs
+Assets/Scripts/Battle/GridMap/AI/Unit.cs
+Assets/Scripts/Battle/GridMap/AI/UnitCombatStats.cs
+Assets/Scripts/Battle/GridMap/AI/UnitMovementScript.cs
+Assets/Scripts/Battle/GridMap/GridPainter.cs
+Assets/Scripts/Battle/GridMap/GridSquareMouseOver.cs
+Assets/Scripts/Battle/GridMap/HexGrid.cs
+Assets/Scripts/Battle/GridMap/Hexagonal/FlatVertice.cs
+Assets/Scripts/Battle/GridMap/Hexagonal/Hex.cs
+Assets/Scripts/Battle/GridMap/Hexagonal/HexMath.cs
+Assets/Scripts/Battle/GridMap/Hexagonal/PointyVertice.cs
+Assets/Scripts/Battle/GridMap/Vector2Int.cs
+Assets/Scripts/Battle/IBattleControlAI.cs
+"Assets/Scripts/Visual Novel/DisplayEditor/VNCharacterEditor.cs"
+"Assets/Scripts/Visual Novel/DisplayEditor/VNDisplayEditor.cs"
+"Assets/Scripts/Visual Novel/Text/VNCharacter.cs"
+"Assets/Scripts/Visual Novel/Text/VNCharacterHolder.cs"
+"Assets/Scripts/Visual Novel/Text/VNEngine.cs"
+"Assets/Scripts/Visual Novel/Text/VNTextDisplayer.cs"
+"Assets/Scripts/Visual Novel/TextEditor/VNEditor.cs"
+"Assets/Scripts/Visual Novel/TextEditor/VNMessage.cs"
+"Assets/Scripts/Visual Novel/TextEditor/VNNode.cs"
+"Assets/Scripts/Visual Novel/TextEditor/VNSaveJSON.cs"
+"Assets/Scripts/Visual Novel/TextEditor/VNScene.cs"
+Assets/Scripts/plugins/BitmapDrawing.cs
+Assets/Scripts/plugins/CinematicCamera.cs
+Assets/Scripts/plugins/ColorPicker/CameraBgColor.cs
+Assets/Scripts/plugins/ColorPicker/ColorPicker.cs
+Assets/Scripts/plugins/ColorPicker/DemoGUI_ColorPickerDemo.cs
+Assets/Scripts/plugins/ColorPicker/DrawGUIOrderColorPicker.cs
+Assets/Scripts/plugins/ColorPicker/ObjectColor.cs
+Assets/Scripts/plugins/ColorPicker/PSColor.cs
+Assets/Scripts/plugins/ComboBox.cs
+Assets/Scripts/plugins/Extensions.cs
+Assets/Scripts/plugins/FPSDisplay.cs
+Assets/Scripts/plugins/GUIUtilities.cs
+Assets/Scripts/plugins/GameData.cs
+Assets/Scripts/plugins/JSON/JSONLoader.cs
+Assets/Scripts/plugins/JSON/JSONSaver.cs
+Assets/Scripts/plugins/JSON/SimpleJSON.cs
+Assets/Scripts/plugins/KeyMap.cs
+Assets/Scripts/plugins/ObjectPool.cs
+Assets/Scripts/plugins/SimpleSmoothMouseLook.cs
+Assets/Scripts/plugins/SiteLock.cs
+Assets/Scripts/plugins/StickToTransform.cs
+Assets/Scripts/plugins/TextLog.cs
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"
