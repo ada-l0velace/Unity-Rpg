@@ -6,6 +6,7 @@ using System.Collections.Generic;
 namespace FalloutRpg.ItemSystem {
 
 	public class ISRarityDatabase : ScriptableObject {
+		[SerializeField]
 		private List<ISRarity> database  = new List<ISRarity>();
 
 		/// <summary>

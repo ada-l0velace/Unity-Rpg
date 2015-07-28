@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   database:
   - _name: Common
-    _icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  - _name: Common
-    _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  - _name: Common
+    _icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - _name: Rarity
+    _icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - _name: Epic
     _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

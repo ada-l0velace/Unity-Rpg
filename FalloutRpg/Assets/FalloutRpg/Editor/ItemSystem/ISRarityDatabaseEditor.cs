@@ -43,7 +43,16 @@ namespace FalloutRpg.ItemSystem.Editor {
 
 		void OnGUI() {
 			ListView ();
-			add_rarity_to_database();
+			bottom_bar ();
+		}
+
+		void bottom_bar () {
+			GUILayout.BeginHorizontal ("box", GUILayout.ExpandWidth (true));
+			GUILayout.Label ("Rarities: " + db.Count);
+			if (GUILayout.Button ("Add")) {
+				db.Add (new ISRarity ());
+			}
+			GUILayout.EndHorizontal ();
 		}
 
 		void add_rarity_to_database() {

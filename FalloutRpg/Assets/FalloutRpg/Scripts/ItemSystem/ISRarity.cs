@@ -8,8 +8,10 @@ namespace FalloutRpg.ItemSystem {
 	/// </summary>
 	[System.Serializable]
 	public class ISRarity : IISRarity {
-		[SerializeField] string _name;
-		[SerializeField] Sprite _icon;
+		[SerializeField] 
+		private string _name;
+		[SerializeField] 
+		private Sprite _icon;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ISRarity"/> class.
