@@ -9,10 +9,15 @@ namespace FalloutRpg.ItemSystem {
 	/// </summary>
 	public class ISObject : IISObject {
 
+		[SerializeField]
 		private string _name;
+		[SerializeField]
 		private string _value;
+		[SerializeField]
 		private Sprite _icon;
+		[SerializeField]
 		private int _weight;
+		[SerializeField]
 		private ISRarity _rarity;
 
 		#region IISObject implementation

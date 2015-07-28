@@ -17,8 +17,18 @@ namespace FalloutRpg.ItemSystem {
 		/// Initializes a new instance of the <see cref="ISRarity"/> class.
 		/// </summary>
 		public ISRarity(){
-			_name = "Common";
+			_name = "Enter a name here!";
 			_icon = new Sprite ();
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FalloutRpg.ItemSystem.ISRarity"/> class.
+		/// </summary>
+		/// <param name="name">Name.</param>
+		/// <param name="icon">Icon.</param>
+		public ISRarity( string name, Sprite icon){
+			_name = name;
+			_icon = icon;
 		}
 
 		#region IISRarity implementation
