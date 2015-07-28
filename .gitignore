@@ -39,3 +39,4 @@ FalloutRpg/[Tt]humbs.db
 .venb/
 .directory/
 .ssh/
+*.pyc
