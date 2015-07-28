@@ -20,7 +20,7 @@ def setup(aliased=False):
 		# set up virtualenv
 		if not ("venv" in os.listdir('.')):
 			local('sudo pip install virtualenv')
-			local('virtualenv venv')
+			local('virtualenv .venv')
 		run_in_venv('pip install -r requirements.txt')
 		print "Setup successfully done"
 
