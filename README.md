@@ -1,7 +1,15 @@
 # Unamed-Rpg
 Rpg Fallout Like
 
-# Setup Fabric (Windows)
+# Setup Fabric 
+(Linux)
+Run on terminal
+``` 
+> sudo apt-get install python-pip
+> pip install python
+> fab setup
+``` 
+(Windows)
   run in this order:
 ``` 
 1 - setupfabric.bat
