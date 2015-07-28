@@ -5,6 +5,7 @@ Rpg Fallout Like
 (Linux)
 Run on terminal
 ``` 
+> sudo apt-get install python-dev
 > sudo apt-get install python-pip
 > pip install python
 > fab setup
