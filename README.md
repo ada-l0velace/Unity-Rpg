@@ -7,7 +7,7 @@ Run on terminal
 ``` 
 > sudo apt-get install python-dev
 > sudo apt-get install python-pip
-> pip install python
+> pip install fabric
 > fab setup
 ``` 
 (Windows)
