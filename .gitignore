@@ -1,35 +1,35 @@
 # =============== #
 # Unity generated #
 # =============== #
-Fallout Rpg/[Tt]emp/
-Fallout Rpg/[Oo]bj/
-Fallout Rpg/[Bb]uild
-Fallout Rpg/[Ll]ibrary/
-Fallout Rpg/sysinfo.txt
+FalloutRpg/[Tt]emp/
+FalloutRpg/[Oo]bj/
+FalloutRpg/[Bb]uild
+FalloutRpg/[Ll]ibrary/
+FalloutRpg/sysinfo.txt
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
-Fallout Rpg/[Ee]xported[Oo]bj/
-Fallout Rpg/*.userprefs
-Fallout Rpg/*.csproj
-Fallout Rpg/*.pidb
-Fallout Rpg/*.suo
-Fallout Rpg/*.sln*
-Fallout Rpg/*.user
-Fallout Rpg/*.unityproj
-Fallout Rpg/*.booproj
+FalloutRpg/[Ee]xported[Oo]bj/
+FalloutRpg/*.userprefs
+FalloutRpg/*.csproj
+FalloutRpg/*.pidb
+FalloutRpg/*.suo
+FalloutRpg/*.sln*
+FalloutRpg/*.user
+FalloutRpg/*.unityproj
+FalloutRpg/*.booproj
  
 # ============ #
 # OS generated #
 # ============ #
-Fallout Rpg/.DS_Store*
-Fallout Rpg/._*
-Fallout Rpg/.Spotlight-V100
-Fallout Rpg/.Trashes
-Fallout Rpg/Icon?
-Fallout Rpg/ehthumbs.db
-Fallout Rpg/[Tt]humbs.db
+FalloutRpg/.DS_Store*
+FalloutRpg/._*
+FalloutRpg/.Spotlight-V100
+FalloutRpg/.Trashes
+FalloutRpg/Icon?
+FalloutRpg/ehthumbs.db
+FalloutRpg/[Tt]humbs.db
 
 # ========== #
 #    venv    #
