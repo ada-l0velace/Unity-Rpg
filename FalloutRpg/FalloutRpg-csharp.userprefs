@@ -2,7 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/FalloutRpg/Editor/ItemSystem/ISRarityDatabaseEditor.cs">
     <Files>
-      <File FileName="Assets/FalloutRpg/Editor/ItemSystem/ISRarityDatabaseEditor.cs" Line="8" Column="23" />
+      <File FileName="Assets/FalloutRpg/Editor/ItemSystem/ISRarityDatabaseEditor.cs" Line="35" Column="6" />
+      <File FileName="Assets/FalloutRpg/Scripts/ItemSystem/ISRarity.cs" Line="17" Column="10" />
+      <File FileName="Assets/FalloutRpg/Scripts/ItemSystem/ISRarityDatabase.cs" Line="44" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

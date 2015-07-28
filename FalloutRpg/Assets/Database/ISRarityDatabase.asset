@@ -11,3 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed2ce2e6f638204a90e59eb1c2e9d1d, type: 3}
   m_Name: ISRarityDatabase
   m_EditorClassIdentifier: 
+  database:
+  - _name: Common
+    _icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - _name: Common
+    _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  - _name: Common
+    _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

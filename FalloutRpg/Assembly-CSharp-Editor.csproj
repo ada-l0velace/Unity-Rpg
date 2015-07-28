@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FalloutRpg\Editor\ItemSystem\ISListView.cs" />
      <Compile Include="Assets\FalloutRpg\Editor\ItemSystem\ISRarityDatabaseEditor.cs" />
      <None Include="Assets\Scripts\plugins\ColorPicker\license.txt" />
      <None Include="Assets\Resources\Data\gui.txt" />
