@@ -1,15 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IISWeapon : MonoBehaviour {
+public interface IISWeapon {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	int MinDamage { get; set; }
+	int MaxDamage { get; set; }
+	int Attack ();
 }
