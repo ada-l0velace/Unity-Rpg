@@ -16,7 +16,7 @@ namespace FalloutRpg.ItemSystem.Editor {
 		const string DATABASE_NAME = @"Database";
 		const string DATABASE_FULL_PATH = @"Assets/" + DATABASE_NAME + "/" + FILE_NAME; 
 
-		[MenuItem("FalloutRpg/Database/Quality Editor %#i")]
+		[MenuItem("FalloutRpg/Database/Rarity Editor %#i")]
 
 		/// <summary>
 		/// Init this instance.

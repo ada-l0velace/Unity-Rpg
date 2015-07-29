@@ -6,7 +6,7 @@ using System.Collections;
 /// 
 /// This is the base class for a stats in game
 /// </summary>
-public class BaseStat {
+public abstract class BaseStat {
 	private int _base_value;
 	private int _exp_to_level;
 	private float _level_modifier;
