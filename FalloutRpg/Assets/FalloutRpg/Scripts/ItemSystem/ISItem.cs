@@ -4,10 +4,8 @@ using System.Collections;
 
 namespace FalloutRpg.ItemSystem {
 
-	/// <summary>
-	/// IS object.
-	/// </summary>
-	public class ISObject : IISObject {
+	[System.Serializable]
+	public class ISItem : IISItem {
 
 		[SerializeField]
 		private string _name;

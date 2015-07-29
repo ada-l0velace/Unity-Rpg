@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace FalloutRpg.ItemSystem {
 
-	public class ISObjectDatabase : ScriptableObjectDatabase <ISObject> {
+	public class ISItemDatabase : ScriptableObjectDatabase <ISItem> {
 
 	}
 }

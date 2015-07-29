@@ -2,7 +2,7 @@
 using System.Collections;
 using FalloutRpg.ItemSystem;
 
-public interface IISObject  {
+public interface IISItem  {
 	// Name
 	// Value - gold value
 	// Icon
