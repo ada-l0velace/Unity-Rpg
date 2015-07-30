@@ -45,12 +45,5 @@ namespace FalloutRpg.ItemSystem {
 			Buffs.Remove (buff);
 		}
 
-		/// <summary>
-		/// Removes all buffs.
-		/// </summary>
-		public void RemoveAll() {
-			Buffs.RemoveAll();
-		}
-
 	}
 }
