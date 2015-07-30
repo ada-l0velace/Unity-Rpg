@@ -3,16 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace FalloutRpg.ItemSystem {
-	public class ISBuffItem : ISItem {
+	public abstract class ISBuffItem : ISItem {
 
 		[SerializeField] private List <ISBuff> _buffs;
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="FalloutRpg.ItemSystem.ISBuffItem"/> class.
-		/// </summary>
-		public ISBuffItem() {
-			Buffs = new List<ISBuff>();
-		}
 
 		#region Set and Geters
 		/// <summary>

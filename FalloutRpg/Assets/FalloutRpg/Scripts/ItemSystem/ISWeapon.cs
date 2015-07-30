@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System;
 
 namespace FalloutRpg.ItemSystem {
 	
@@ -154,10 +155,32 @@ namespace FalloutRpg.ItemSystem {
 
 		#endregion
 
-		public void OnGUI() {
-			Name = EditorGUILayout.TextField ("Name: ", Name);
+		public override void OnGUI() {
+			GUILayout.BeginVertical ();
+			base.OnGUI ();
+			DisplayWeaponType ();
+			DisplayDamageType ();
+			DisplayPrefab ();
+			GUILayout.EndVertical();
+			GUILayout.BeginVertical ();
+			_minDamage = Convert.ToInt32(EditorGUILayout.TextField ("Min Damage", _minDamage.ToString()));
+			_maxDamage = Convert.ToInt32(EditorGUILayout.TextField ("Max Damage", _maxDamage.ToString()));
+			_aoeDamage = Convert.ToInt32(EditorGUILayout.TextField ("Aoe Damage", _aoeDamage.ToString()));
+
+			GUILayout.EndVertical();
 		}
 
+		public void DisplayWeaponType() {
+			GUILayout.Label ("Weapon Type");
+		}
+
+		public void DisplayDamageType() {
+			GUILayout.Label ("Damage Type");
+		}
+
+		public void DisplayPrefab() {
+			GUILayout.Label ("Prefab");
+		}
 	}
 
 }

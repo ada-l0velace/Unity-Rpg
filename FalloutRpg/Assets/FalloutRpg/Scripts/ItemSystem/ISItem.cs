@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
+using UnityEditor;
+using System;
 using System.Collections;
 
 
 namespace FalloutRpg.ItemSystem {
 
 	[System.Serializable]
-	public class ISItem : IISItem {
+	public abstract class ISItem : IISItem {
 
 		[SerializeField] private string _name;
-		[SerializeField] private string _value;
+		[SerializeField] private int _value;
 		[SerializeField] private Sprite _icon;
 		[SerializeField] private int _weight;
 		[SerializeField] private ISRarity _rarity;
@@ -30,7 +32,7 @@ namespace FalloutRpg.ItemSystem {
 		/// Gets or sets the value.
 		/// </summary>
 		/// <value>The value.</value>
-		public string Value {
+		public int Value {
 			get {
 				return _value;
 			}
@@ -77,5 +79,20 @@ namespace FalloutRpg.ItemSystem {
 
 		#endregion
 
+		public virtual void OnGUI () {
+			_name = EditorGUILayout.TextField ("Name", _name); 
+			_value = Convert.ToInt32(EditorGUILayout.TextField ("Value", _value.ToString()));
+			_weight = Convert.ToInt32(EditorGUILayout.TextField ("Weight", _weight.ToString()));
+			DisplayIcon ();
+			DisplayRarity ();
+		}
+
+		public void DisplayIcon() {
+			GUILayout.Label ("Icon");
+		}
+
+		public void DisplayRarity() {
+			GUILayout.Label ("Rarity");
+		}
 	}
 }
