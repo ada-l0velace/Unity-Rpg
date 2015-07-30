@@ -6,7 +6,7 @@ using System;
 namespace FalloutRpg.ItemSystem {
 
 	[System.Serializable]
-	public class ISWeapon : ISBuff, IISWeapon {
+	public class ISWeapon : ISBuffItem, IISWeapon {
 
 		[SerializeField] private int _minDamage;
 		[SerializeField] private int _maxDamage;
@@ -153,11 +153,11 @@ namespace FalloutRpg.ItemSystem {
 		}
 
 		public void DisplayWeaponType() {
-			GUILayout.Label ("Weapon Type");
+			_weaponType = (WeaponType) EditorGUILayout.EnumPopup ("Weapon Type", _weaponType);
 		}
 
 		public void DisplayDamageType() {
-			GUILayout.Label ("Damage Type");
+			_damageType = (DamageType)EditorGUILayout.EnumPopup ("Damage Type", _damageType);
 		}
 
 	}

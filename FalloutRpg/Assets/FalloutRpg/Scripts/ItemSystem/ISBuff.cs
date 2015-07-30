@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace FalloutRpg.ItemSystem {
 
 	[System.Serializable]
-	public class ISBuff : ISItem, IISBuff {
+	public class ISBuff : IISBuff {
 
 		[SerializeField] private BaseStat _stat;
 		[SerializeField] private int _value;

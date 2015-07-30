@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace FalloutRpg.ItemSystem {
+
+	[System.Serializable]
 	public abstract class ISBuffItem : ISItem {
 
 		[SerializeField] private List <ISBuff> _buffs;

@@ -12,6 +12,7 @@ public interface IISWeapon {
 	int Attack ();
 }
 
+[System.Serializable]
 public enum WeaponType {
 	Knife,
 	Club,
@@ -28,6 +29,7 @@ public enum WeaponType {
 	Explosive
 }
 
+[System.Serializable]
 public enum DamageType {
 	Normal,
 	Laser,
