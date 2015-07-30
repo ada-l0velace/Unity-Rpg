@@ -78,7 +78,7 @@ namespace FalloutRpg.ItemSystem {
 		/// <param name="db_path">Db_path.</param>
 		/// <param name="db_name">Db_name.</param>
 		/// <typeparam name="U">The 1st type parameter.</typeparam>
-		public U GetDatabase <U> (string db_path, string db_name) where U : ScriptableObject {
+		public static U GetDatabase <U> (string db_path, string db_name) where U : ScriptableObject {
 			string db_full_path = @"Assets/" + db_path + "/" + db_name;
 
 			U db = AssetDatabase.LoadAssetAtPath (db_full_path, typeof(U)) as U;

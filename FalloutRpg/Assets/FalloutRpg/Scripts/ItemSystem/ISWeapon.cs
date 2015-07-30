@@ -6,18 +6,13 @@ namespace FalloutRpg.ItemSystem {
 	[System.Serializable]
 	public class ISWeapon : ISBuff, IISWeapon, IISGameObject {
 
-		[SerializeField]
-		int _minDamage;
-		[SerializeField]
-		int _maxDamage;
-		[SerializeField]
-		int _aoeDamage;
-		[SerializeField]
-		int _range;
-		[SerializeField]
-		WeaponType _weaponType;
-		[SerializeField]
-		DamageType _damageType;
+		[SerializeField] int _minDamage;
+		[SerializeField] int _maxDamage;
+		[SerializeField] int _aoeDamage;
+		[SerializeField] int _range;
+		[SerializeField] WeaponType _weaponType;
+		[SerializeField] DamageType _damageType;
+		[SerializeField] GameObject _prefab;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="FalloutRpg.ItemSystem.ISWeapon"/> class.
@@ -29,6 +24,7 @@ namespace FalloutRpg.ItemSystem {
 			EWeaponType = WeaponType.Knife;
 			EDamageType = DamageType.Normal;
 			Range = 0;
+			Prefab = new GameObject ();
 		}
 
 		/// <summary>
@@ -40,13 +36,16 @@ namespace FalloutRpg.ItemSystem {
 		/// <param name="weaponType">Weapon type.</param>
 		/// <param name="damageType">Damage type.</param>
 		/// <param name="range">Range.</param>
-		public ISWeapon(int minDamage, int maxDamage,int aoeDamage, WeaponType weaponType, DamageType damageType, int range) {
+		/// <param name="prefab">Prefab.</param>
+		public ISWeapon(int minDamage, int maxDamage,int aoeDamage, WeaponType weaponType, DamageType damageType, int range, GameObject prefab) {
 			MinDamage = minDamage;
 			MaxDamage = maxDamage;
 			AoeDamage = aoeDamage;
 			EWeaponType = weaponType;
 			EDamageType = damageType;
 			Range = range;
+			Prefab = prefab;
+
 		}
 
 		#region IISWeapon implementation
@@ -139,7 +138,21 @@ namespace FalloutRpg.ItemSystem {
 
 		#endregion
 
+		#region IISGameObject implementation
+		/// <summary>
+		/// Gets or sets the prefab.
+		/// </summary>
+		/// <value>The prefab.</value>
+		public GameObject Prefab {
+			get {
+				return _prefab;
+			}
+			set {
+				_prefab = value;
+			}
+		}
 
+		#endregion
 
 	}
 

@@ -32,8 +32,7 @@ namespace FalloutRpg.ItemSystem.Editor {
 		/// Raises the enable event.
 		/// </summary>
 		void OnEnable() {
-			db = ScriptableObject.CreateInstance<ISRarityDatabase> ();
-			db = db.GetDatabase<ISRarityDatabase> (DATABASE_NAME, FILE_NAME);
+			db = ISRarityDatabase.GetDatabase<ISRarityDatabase> (DATABASE_NAME, FILE_NAME);
 		}
 
 		/// <summary>
