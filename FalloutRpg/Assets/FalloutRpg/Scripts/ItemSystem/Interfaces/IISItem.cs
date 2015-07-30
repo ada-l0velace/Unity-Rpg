@@ -9,7 +9,7 @@ public interface IISItem  {
 	// Weight
 	// Rarity
 	string Name { get; set; }
-	int Value { get; set; }
+	int Price { get; set; }
 	Sprite Icon { get; set; }
 	int Weight { get; set; }
 	ISRarity Rarity { get; set; }

@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace FalloutRpg.ItemSystem {
-	
+
+	[System.Serializable]
 	public class ISBuff : ISItem, IISBuff {
 
 		[SerializeField] private BaseStat _stat;

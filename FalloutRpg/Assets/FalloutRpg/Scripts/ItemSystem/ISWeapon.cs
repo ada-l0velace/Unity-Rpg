@@ -4,21 +4,21 @@ using System.Collections;
 using System;
 
 namespace FalloutRpg.ItemSystem {
-	
-	public class ISWeapon : ISBuff, IISWeapon, IISGameObject {
 
-		[SerializeField] int _minDamage;
-		[SerializeField] int _maxDamage;
-		[SerializeField] int _aoeDamage;
-		[SerializeField] int _range;
-		[SerializeField] WeaponType _weaponType;
-		[SerializeField] DamageType _damageType;
-		[SerializeField] GameObject _prefab;
+	[System.Serializable]
+	public class ISWeapon : ISBuff, IISWeapon {
+
+		[SerializeField] private int _minDamage;
+		[SerializeField] private int _maxDamage;
+		[SerializeField] private int _aoeDamage;
+		[SerializeField] private int _range;
+		[SerializeField] private WeaponType _weaponType;
+		[SerializeField] private DamageType _damageType;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="FalloutRpg.ItemSystem.ISWeapon"/> class.
 		/// </summary>
-		public ISWeapon() {
+		public ISWeapon() : base ()  {
 			MinDamage = 0;
 			MaxDamage = 0;
 			AoeDamage = 0;
@@ -38,14 +38,13 @@ namespace FalloutRpg.ItemSystem {
 		/// <param name="damageType">Damage type.</param>
 		/// <param name="range">Range.</param>
 		/// <param name="prefab">Prefab.</param>
-		public ISWeapon(int minDamage, int maxDamage,int aoeDamage, WeaponType weaponType, DamageType damageType, int range, GameObject prefab) {
+		public ISWeapon(int minDamage, int maxDamage,int aoeDamage, WeaponType weaponType, DamageType damageType, int range) : base ()  {
 			MinDamage = minDamage;
 			MaxDamage = maxDamage;
 			AoeDamage = aoeDamage;
 			EWeaponType = weaponType;
 			EDamageType = damageType;
 			Range = range;
-			Prefab = prefab;
 
 		}
 
@@ -139,28 +138,11 @@ namespace FalloutRpg.ItemSystem {
 
 		#endregion
 
-		#region IISGameObject implementation
-		/// <summary>
-		/// Gets or sets the prefab.
-		/// </summary>
-		/// <value>The prefab.</value>
-		public GameObject Prefab {
-			get {
-				return _prefab;
-			}
-			set {
-				_prefab = value;
-			}
-		}
-
-		#endregion
-
 		public override void OnGUI() {
 			GUILayout.BeginVertical ();
 			base.OnGUI ();
 			DisplayWeaponType ();
 			DisplayDamageType ();
-			DisplayPrefab ();
 			GUILayout.EndVertical();
 			GUILayout.BeginVertical ();
 			_minDamage = Convert.ToInt32(EditorGUILayout.TextField ("Min Damage", _minDamage.ToString()));
@@ -178,9 +160,6 @@ namespace FalloutRpg.ItemSystem {
 			GUILayout.Label ("Damage Type");
 		}
 
-		public void DisplayPrefab() {
-			GUILayout.Label ("Prefab");
-		}
 	}
 
 }

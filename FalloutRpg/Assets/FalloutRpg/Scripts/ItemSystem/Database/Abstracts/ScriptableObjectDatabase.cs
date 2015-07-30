@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace FalloutRpg.ItemSystem {
+
 	public abstract class ScriptableObjectDatabase<T> : ScriptableObject where T: class {
 		[SerializeField]
 		private List<T> database  = new List<T>();

@@ -37,6 +37,8 @@ namespace FalloutRpg.ItemSystem.Editor {
 				}
 			} else {
 				if (GUILayout.Button ("Save")) {
+					db.Add (tempWeapon);
+
 					togleNewWeapon = false;
 					tempWeapon = null;
 				}
