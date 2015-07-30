@@ -22,13 +22,22 @@ namespace FalloutRpg.ItemSystem.Editor {
 		}
 
 		void OnEnable() {
-			db = ISWeaponDatabase.GetDatabase<ISWeaponDatabase> (DATABASE_NAME, FILE_NAME);
+			if (db == null)
+				db = ISWeaponDatabase.GetDatabase<ISWeaponDatabase> (DATABASE_NAME, FILE_NAME);
 		}
 
 		void OnGUI()
 		{
 			TopBar ();
+			GUILayout.BeginHorizontal ("box");
 			ListView ();
+			ItemDetails ();
+			GUILayout.EndHorizontal();
+			bottom_bar ();
+		}
+
+		void bottom_bar () {
+			GUILayout.Label ("Items: " + db.Count);
 		}
 	}
 }

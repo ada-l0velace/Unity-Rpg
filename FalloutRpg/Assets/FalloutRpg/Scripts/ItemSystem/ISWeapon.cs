@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 namespace FalloutRpg.ItemSystem {
-
-	[System.Serializable]
+	
 	public class ISWeapon : ISBuff, IISWeapon, IISGameObject {
 
 		[SerializeField] int _minDamage;
@@ -24,7 +24,7 @@ namespace FalloutRpg.ItemSystem {
 			EWeaponType = WeaponType.Knife;
 			EDamageType = DamageType.Normal;
 			Range = 0;
-			Prefab = new GameObject ();
+			//Prefab = new GameObject ();
 		}
 
 		/// <summary>
@@ -153,6 +153,10 @@ namespace FalloutRpg.ItemSystem {
 		}
 
 		#endregion
+
+		public void OnGUI() {
+			Name = EditorGUILayout.TextField ("Name: ", Name);
+		}
 
 	}
 

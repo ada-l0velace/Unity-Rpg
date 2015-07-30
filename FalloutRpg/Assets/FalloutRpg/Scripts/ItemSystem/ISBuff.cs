@@ -3,14 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace FalloutRpg.ItemSystem {
-
-	[System.Serializable]
+	
 	public class ISBuff : ISItem, IISBuff {
 
-		[SerializeField]
-		private BaseStat _stat;
-		[SerializeField]
-		private int _value;
+		[SerializeField] private BaseStat _stat;
+		[SerializeField] private int _value;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="FalloutRpg.ItemSystem.ISBuff"/> class.

@@ -3,14 +3,12 @@ using System.Collections;
 
 namespace FalloutRpg.ItemSystem.Editor {
 	public partial class ISItemDatabaseEditor  {
-
+		public int selGridInt = 0;
+		public string[] selStrings = new string[] {"Weapons", "Armor", "Potions", "About"};
 		void TopBar () {
-			GUILayout.BeginHorizontal ("Box", GUILayout.ExpandWidth (true));
-			GUILayout.Button ("Weapons");
-			GUILayout.Button ("Armor");
-			GUILayout.Button ("Potions");
-			GUILayout.Button ("About");
-			GUILayout.EndHorizontal ();
+
+			selGridInt = GUILayout.SelectionGrid(selGridInt, selStrings, 4);
+
 		}
 
 	}

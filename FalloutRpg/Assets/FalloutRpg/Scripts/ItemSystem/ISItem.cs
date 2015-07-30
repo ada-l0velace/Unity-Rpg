@@ -7,16 +7,11 @@ namespace FalloutRpg.ItemSystem {
 	[System.Serializable]
 	public class ISItem : IISItem {
 
-		[SerializeField]
-		private string _name;
-		[SerializeField]
-		private string _value;
-		[SerializeField]
-		private Sprite _icon;
-		[SerializeField]
-		private int _weight;
-		[SerializeField]
-		private ISRarity _rarity;
+		[SerializeField] private string _name;
+		[SerializeField] private string _value;
+		[SerializeField] private Sprite _icon;
+		[SerializeField] private int _weight;
+		[SerializeField] private ISRarity _rarity;
 
 		#region IISObject implementation
 		/// <summary>
