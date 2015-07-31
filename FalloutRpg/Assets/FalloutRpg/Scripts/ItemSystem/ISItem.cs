@@ -120,15 +120,17 @@ namespace FalloutRpg.ItemSystem {
 		}
 
 		public void DisplayIcon() {
-			GUILayout.Label ("Icon");
+			_icon = EditorGUILayout.ObjectField ("Icon", _icon, typeof(Sprite), false) as Sprite;
 		}
 
 		public void DisplayRarity() {
 			rarityIndex = EditorGUILayout.Popup ("Rarity", rarityIndex, options);
 			_rarity = rdb.Get (rarityIndex);
 		}
+
 		public void DisplayPrefab () {
 			_prefab = EditorGUILayout.ObjectField ("Prefab", _prefab, typeof(GameObject), false) as GameObject;
 		}
+
 	}
 }

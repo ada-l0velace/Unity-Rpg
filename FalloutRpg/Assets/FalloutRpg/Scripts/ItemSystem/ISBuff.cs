@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace FalloutRpg.ItemSystem {
 
 	[System.Serializable]
-	public class ISBuff : IISBuff {
+	public class ISBuff<T> : IISBuff where T: struct, IConvertible {
 
-		[SerializeField] private BaseStat _stat;
+		[SerializeField] private T _stat;
 		[SerializeField] private int _value;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="FalloutRpg.ItemSystem.ISBuff"/> class.
 		/// </summary>
 		public ISBuff() {
-			_stat = null;
+			_stat = default(T);
 			_value = 0;
 		}
 
@@ -23,7 +24,7 @@ namespace FalloutRpg.ItemSystem {
 		/// </summary>
 		/// <param name="stat">Stat.</param>
 		/// <param name="value">Value.</param>
-		public ISBuff(BaseStat stat, int value) {
+		public ISBuff(T stat, int value) {
 			_stat = stat;
 			_value = value;
 		}
@@ -34,7 +35,7 @@ namespace FalloutRpg.ItemSystem {
 		/// Gets or sets the stat.
 		/// </summary>
 		/// <value>The stat.</value>
-		public BaseStat Stat {
+		public T Stat {
 			get {
 				return _stat;
 			}

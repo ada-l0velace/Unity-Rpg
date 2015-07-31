@@ -1,16 +1,36 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 namespace FalloutRpg.ItemSystem.Editor {
+
 	public partial class ISItemDatabaseEditor  {
+		enum DisplayState {
+			NONE,
+			DETAILS
+		}
+
+		DisplayState _state = DisplayState.NONE;
 		ISWeapon tempWeapon = new ISWeapon();
 		bool togleNewWeapon = false;
 		void ItemDetails () {
 			GUILayout.BeginVertical("Box", GUILayout.ExpandWidth (true), GUILayout.ExpandHeight (true));
 
 			GUILayout.BeginHorizontal (GUILayout.ExpandWidth (true), GUILayout.ExpandHeight (true));
-			if (togleNewWeapon) 
+			EditorGUILayout.LabelField ("State: " + _state);
+			switch (_state) {
+			case DisplayState.DETAILS:
+				{
+					if (togleNewWeapon)
+						DisplayNewWeapon ();
+					break;
+				}
+			default:
+				break;
+			}
+			/*if (togleNewWeapon) 
 				DisplayNewWeapon ();
+			*/
 			GUILayout.EndHorizontal ();
 					
 			GUILayout.BeginHorizontal (GUILayout.ExpandWidth (true));
@@ -34,18 +54,27 @@ namespace FalloutRpg.ItemSystem.Editor {
 				if (GUILayout.Button ("Create new Weapon")) {
 					tempWeapon = new ISWeapon ();
 					togleNewWeapon = true;
+					_state = DisplayState.DETAILS;
 				}
 			} else {
 				if (GUILayout.Button ("Save")) {
-					db.Add (tempWeapon);
-
+					if (_gridIndex == -1) {
+						db.Add (tempWeapon);
+					} else {
+						db.Replace (_gridIndex, tempWeapon);
+					}
 					togleNewWeapon = false;
 					tempWeapon = null;
+					_gridIndex = -1;
+					_state = DisplayState.NONE;
+					
 				}
 
 				if (GUILayout.Button ("Cancel")) {
 					togleNewWeapon = false;
 					tempWeapon = null;
+					_gridIndex = -1;
+					_state = DisplayState.NONE;
 				}
 			}
 		}

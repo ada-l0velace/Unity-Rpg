@@ -7,7 +7,7 @@ public class Character : Entity {
 	private int _level;
 	private uint _xp;
 	private uint _xp_to_level;
-	private PrimaryStat [] _primary_stats;
+	private static PrimaryStat [] _primary_stats;
 	private DerivedStat [] _derived_stats;
 	private int STARTING_PSTATS = 5;
 
@@ -73,6 +73,10 @@ public class Character : Entity {
 	public uint xp_to_level {
 		get	{ return _xp_to_level;}
 		set	{ _xp_to_level = value;}
+	}
+
+	public static PrimaryStat [] PrimaryStats {
+		get { return _primary_stats; }
 	}
 
 	public void add_exp(uint experience) {

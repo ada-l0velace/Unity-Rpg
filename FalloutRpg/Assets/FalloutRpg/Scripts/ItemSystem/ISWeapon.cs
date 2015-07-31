@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 namespace FalloutRpg.ItemSystem {
@@ -25,6 +26,7 @@ namespace FalloutRpg.ItemSystem {
 			EWeaponType = WeaponType.Knife;
 			EDamageType = DamageType.Normal;
 			Range = 0;
+			PBuffsL = new List <ISBuff<StatName>>();
 			//Prefab = new GameObject ();
 		}
 
@@ -143,8 +145,9 @@ namespace FalloutRpg.ItemSystem {
 			base.OnGUI ();
 			DisplayWeaponType ();
 			DisplayDamageType ();
-			GUILayout.EndVertical();
-			GUILayout.BeginVertical ();
+			DisplayBuffs ();
+			//GUILayout.EndVertical();
+			//GUILayout.BeginVertical ();
 			_minDamage = Convert.ToInt32(EditorGUILayout.TextField ("Min Damage", _minDamage.ToString()));
 			_maxDamage = Convert.ToInt32(EditorGUILayout.TextField ("Max Damage", _maxDamage.ToString()));
 			_aoeDamage = Convert.ToInt32(EditorGUILayout.TextField ("Aoe Damage", _aoeDamage.ToString()));

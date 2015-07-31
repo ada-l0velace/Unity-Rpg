@@ -11,4 +11,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e451f4fdac8d1d449b1dfb272450d7c, type: 3}
   m_Name: ISWeaponDatabase
   m_EditorClassIdentifier: 
-  database: []
+  database:
+  - _name: qwe
+    _price: 0
+    _icon: {fileID: 0}
+    _weight: 0
+    _rarity:
+      _name: q
+      _icon: {fileID: 0}
+    _prefab: {fileID: 0}
+    _minDamage: 0
+    _maxDamage: 0
+    _aoeDamage: 0
+    _range: 0
+    _weaponType: 0
+    _damageType: 0
+  - _name: qwe
+    _price: 0
+    _icon: {fileID: 0}
+    _weight: 0
+    _rarity:
+      _name: q
+      _icon: {fileID: 0}
+    _prefab: {fileID: 0}
+    _minDamage: 0
+    _maxDamage: 0
+    _aoeDamage: 0
+    _range: 0
+    _weaponType: 0
+    _damageType: 0
+  - _name: qwew
+    _price: 0
+    _icon: {fileID: 0}
+    _weight: 0
+    _rarity:
+      _name: q
+      _icon: {fileID: 0}
+    _prefab: {fileID: 0}
+    _minDamage: 0
+    _maxDamage: 0
+    _aoeDamage: 0
+    _range: 0
+    _weaponType: 0
+    _damageType: 0
+  - _name: qwewe
+    _price: 0
+    _icon: {fileID: 0}
+    _weight: 0
+    _rarity:
+      _name: q
+      _icon: {fileID: 0}
+    _prefab: {fileID: 0}
+    _minDamage: 0
+    _maxDamage: 0
+    _aoeDamage: 0
+    _range: 0
+    _weaponType: 0
+    _damageType: 0
+  - _name: qwwe
+    _price: 0
+    _icon: {fileID: 0}
+    _weight: 0
+    _rarity:
+      _name: q
+      _icon: {fileID: 0}
+    _prefab: {fileID: 0}
+    _minDamage: 0
+    _maxDamage: 0
+    _aoeDamage: 0
+    _range: 0
+    _weaponType: 0
+    _damageType: 0
+  - _name: ewwq
+    _price: 0
+    _icon: {fileID: 0}
+    _weight: 0
+    _rarity:
+      _name: q
+      _icon: {fileID: 0}
+    _prefab: {fileID: 0}
+    _minDamage: 0
+    _maxDamage: 0
+    _aoeDamage: 0
+    _range: 0
+    _weaponType: 0
+    _damageType: 0
