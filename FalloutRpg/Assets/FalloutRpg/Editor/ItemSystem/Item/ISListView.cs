@@ -22,6 +22,7 @@ namespace FalloutRpg.ItemSystem.Editor {
 					tempWeapon = new ISWeapon(db.Get (i));
 					togleNewWeapon = true;
 					_state = DisplayState.DETAILS;
+					GUI.FocusControl ("SaveButton");
 				}
 				//EditorGUILayout.LabelField ();
 			}

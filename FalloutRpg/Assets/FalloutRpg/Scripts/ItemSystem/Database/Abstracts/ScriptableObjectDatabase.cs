@@ -7,7 +7,7 @@ namespace FalloutRpg.ItemSystem {
 
 	public abstract class ScriptableObjectDatabase<T> : ScriptableObject where T: class {
 		[SerializeField]
-		private List<T> database  = new List<T>();
+		protected List<T> database  = new List<T>();
 
 		/// <summary>
 		/// Add the specified item.

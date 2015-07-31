@@ -58,6 +58,7 @@ namespace FalloutRpg.ItemSystem.Editor {
 					_state = DisplayState.DETAILS;
 				}
 			} else {
+				GUI.SetNextControlName ("SaveButton");
 				if (GUILayout.Button ("Save")) {
 					if (_gridIndex == -1) {
 						db.Add (tempWeapon);
@@ -68,6 +69,7 @@ namespace FalloutRpg.ItemSystem.Editor {
 					tempWeapon = null;
 					_gridIndex = -1;
 					_state = DisplayState.NONE;
+					GUI.FocusControl ("SaveButton");
 					
 				}
 				if (_gridIndex != -1) {
@@ -76,7 +78,8 @@ namespace FalloutRpg.ItemSystem.Editor {
 						togleNewWeapon = false;
 						tempWeapon = null;
 						_gridIndex = -1;
-						_state = DisplayState.NONE;						
+						_state = DisplayState.NONE;
+						GUI.FocusControl ("SaveButton");
 					}
 				}
 				if (GUILayout.Button ("Cancel")) {
@@ -84,6 +87,7 @@ namespace FalloutRpg.ItemSystem.Editor {
 					tempWeapon = null;
 					_gridIndex = -1;
 					_state = DisplayState.NONE;
+					GUI.FocusControl ("SaveButton");
 				}
 			}
 		}

@@ -133,7 +133,18 @@ namespace FalloutRpg.ItemSystem {
 		}
 
 		public void DisplayRarity() {
-			rarityIndex = EditorGUILayout.Popup ("Rarity", rarityIndex, options);
+			//if (_rarity == null)
+				//return;
+			int itemIndex = 0;
+			//Debug.Log("Quality Index: " + rdb.GetIndex(_rarity.Name));
+			if (_rarity != null)
+				itemIndex = rdb.GetIndex (_rarity.Name);
+			if (itemIndex == -1) {
+				if(rdb.Count == 0)
+					return;
+				itemIndex = 0;
+			}
+			rarityIndex = EditorGUILayout.Popup ("Rarity", itemIndex, options);
 			_rarity = rdb.Get (rarityIndex);
 		}
 
