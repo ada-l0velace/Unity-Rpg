@@ -30,6 +30,10 @@ namespace FalloutRpg.ItemSystem {
 			//Prefab = new GameObject ();
 		}
 
+		public ISWeapon( ISWeapon weapon) {
+			Clone (weapon);
+		}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="FalloutRpg.ItemSystem.ISWeapon"/> class.
 		/// </summary>
@@ -47,6 +51,19 @@ namespace FalloutRpg.ItemSystem {
 			EWeaponType = weaponType;
 			EDamageType = damageType;
 			Range = range;
+
+		}
+
+		public new void Clone (ISWeapon weapon) {
+			base.Clone (weapon);
+			MinDamage = weapon.MinDamage;
+			MaxDamage = weapon.MaxDamage;
+			AoeDamage = weapon.AoeDamage;
+			EWeaponType = weapon.EWeaponType;
+			EDamageType = weapon.EDamageType;
+			Range = weapon.Range;
+			PBuffsL = weapon.PBuffsL;
+			DBuffsL = weapon.DBuffsL;
 
 		}
 

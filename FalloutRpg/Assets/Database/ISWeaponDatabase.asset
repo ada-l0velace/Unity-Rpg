@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Name: ISWeaponDatabase
   m_EditorClassIdentifier: 
   database:
-  - _name: qwe
+  - _name: Daggeer
     _price: 0
     _icon: {fileID: 0}
     _weight: 0
     _rarity:
-      _name: q
+      _name: Enter a name here!
       _icon: {fileID: 0}
     _prefab: {fileID: 0}
     _minDamage: 0
@@ -26,12 +26,40 @@ MonoBehaviour:
     _range: 0
     _weaponType: 0
     _damageType: 0
-  - _name: qwe
+  - _name: Knife
+    _price: 3
+    _icon: {fileID: 0}
+    _weight: 2
+    _rarity:
+      _name: Enter a name here!
+      _icon: {fileID: 0}
+    _prefab: {fileID: 0}
+    _minDamage: 3
+    _maxDamage: 0
+    _aoeDamage: 0
+    _range: 0
+    _weaponType: 0
+    _damageType: 0
+  - _name: Shotgun
     _price: 0
     _icon: {fileID: 0}
     _weight: 0
     _rarity:
-      _name: q
+      _name: Enter a name here!
+      _icon: {fileID: 0}
+    _prefab: {fileID: 0}
+    _minDamage: 0
+    _maxDamage: 0
+    _aoeDamage: 3
+    _range: 0
+    _weaponType: 0
+    _damageType: 0
+  - _name: Chain Saw
+    _price: 0
+    _icon: {fileID: 0}
+    _weight: 0
+    _rarity:
+      _name: Enter a name here!
       _icon: {fileID: 0}
     _prefab: {fileID: 0}
     _minDamage: 0
@@ -40,12 +68,12 @@ MonoBehaviour:
     _range: 0
     _weaponType: 0
     _damageType: 0
-  - _name: qwew
+  - _name: Sniper
     _price: 0
     _icon: {fileID: 0}
     _weight: 0
     _rarity:
-      _name: q
+      _name: Enter a name here!
       _icon: {fileID: 0}
     _prefab: {fileID: 0}
     _minDamage: 0
@@ -54,12 +82,12 @@ MonoBehaviour:
     _range: 0
     _weaponType: 0
     _damageType: 0
-  - _name: qwewe
+  - _name: Hammer
     _price: 0
     _icon: {fileID: 0}
     _weight: 0
     _rarity:
-      _name: q
+      _name: Enter a name here!
       _icon: {fileID: 0}
     _prefab: {fileID: 0}
     _minDamage: 0
@@ -68,26 +96,12 @@ MonoBehaviour:
     _range: 0
     _weaponType: 0
     _damageType: 0
-  - _name: qwwe
+  - _name: LongSword
     _price: 0
     _icon: {fileID: 0}
     _weight: 0
     _rarity:
-      _name: q
-      _icon: {fileID: 0}
-    _prefab: {fileID: 0}
-    _minDamage: 0
-    _maxDamage: 0
-    _aoeDamage: 0
-    _range: 0
-    _weaponType: 0
-    _damageType: 0
-  - _name: ewwq
-    _price: 0
-    _icon: {fileID: 0}
-    _weight: 0
-    _rarity:
-      _name: q
+      _name: Enter a name here!
       _icon: {fileID: 0}
     _prefab: {fileID: 0}
     _minDamage: 0

@@ -19,7 +19,7 @@ namespace FalloutRpg.ItemSystem.Editor {
 			for (int i = 0; i < db.Count; i++) {
 				if(GUILayout.Button (db.Get(i).Name)){
 					_gridIndex = i;
-					tempWeapon = db.Get (i);
+					tempWeapon = new ISWeapon(db.Get (i));
 					togleNewWeapon = true;
 					_state = DisplayState.DETAILS;
 				}

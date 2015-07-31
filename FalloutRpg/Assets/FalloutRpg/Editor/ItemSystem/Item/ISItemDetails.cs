@@ -17,17 +17,18 @@ namespace FalloutRpg.ItemSystem.Editor {
 			GUILayout.BeginVertical("Box", GUILayout.ExpandWidth (true), GUILayout.ExpandHeight (true));
 
 			GUILayout.BeginHorizontal (GUILayout.ExpandWidth (true), GUILayout.ExpandHeight (true));
-			EditorGUILayout.LabelField ("State: " + _state);
+
 			switch (_state) {
-			case DisplayState.DETAILS:
-				{
-					if (togleNewWeapon)
-						DisplayNewWeapon ();
+				case DisplayState.DETAILS:
+					{
+						if (togleNewWeapon)
+							DisplayNewWeapon ();
+						break;
+					}
+				default:
 					break;
-				}
-			default:
-				break;
 			}
+
 			/*if (togleNewWeapon) 
 				DisplayNewWeapon ();
 			*/
@@ -69,7 +70,15 @@ namespace FalloutRpg.ItemSystem.Editor {
 					_state = DisplayState.NONE;
 					
 				}
-
+				if (_gridIndex != -1) {
+					if (GUILayout.Button ("Delete")) {
+						db.Remove (_gridIndex);
+						togleNewWeapon = false;
+						tempWeapon = null;
+						_gridIndex = -1;
+						_state = DisplayState.NONE;						
+					}
+				}
 				if (GUILayout.Button ("Cancel")) {
 					togleNewWeapon = false;
 					tempWeapon = null;

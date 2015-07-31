@@ -11,12 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed2ce2e6f638204a90e59eb1c2e9d1d, type: 3}
   m_Name: ISRarityDatabase
   m_EditorClassIdentifier: 
-  database:
-  - _name: Enter a name here!
-    _icon: {fileID: 0}
-  - _name: Enter a name here!
-    _icon: {fileID: 0}
-  - _name: Enter a name here!
-    _icon: {fileID: 0}
-  - _name: Enter a name here!
-    _icon: {fileID: 0}
+  database: []

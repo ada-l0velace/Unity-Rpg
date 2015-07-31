@@ -110,6 +110,15 @@ namespace FalloutRpg.ItemSystem {
 			}
 		}
 
+		public virtual void Clone (ISItem weapon) {
+			Name = weapon.Name;
+			Price = weapon.Price;
+			Weight = weapon.Weight;
+			Rarity = weapon.Rarity;
+			Icon = weapon.Icon;
+			Prefab = weapon.Prefab;
+		}
+
 		public virtual void OnGUI () {
 			_name = EditorGUILayout.TextField ("Name", _name); 
 			_price = Convert.ToInt32(EditorGUILayout.TextField ("Price", _price.ToString()));
