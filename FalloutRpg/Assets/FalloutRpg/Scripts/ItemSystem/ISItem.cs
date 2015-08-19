@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System;
 using System.Collections;
+using FalloutRpg.ItemSystem.GUIEditor;
 
 
 namespace FalloutRpg.ItemSystem {
@@ -15,10 +15,7 @@ namespace FalloutRpg.ItemSystem {
 		[SerializeField] private int _weight;
 		[SerializeField] private ISRarity _rarity;
 		[SerializeField] GameObject _prefab;
-		private int rarityIndex = 0;
-		private String [] options;
-		private ISRarityDatabase rdb;
-
+		ISItemEditorManager _editor;
 
 		#region IISObject implementation
 		/// <summary>
@@ -101,13 +98,7 @@ namespace FalloutRpg.ItemSystem {
 		#endregion
             
 		public ISItem() {
-			string databaseName =  @"ISRarityDatabase.asset";
-			string databasePath = @"Database";
-			rdb = ISRarityDatabase.GetDatabase<ISRarityDatabase> (databasePath, databaseName);
-			options = new string[rdb.Count];
-			for (int i = 0; i < rdb.Count; i++) {
-				options [i] = rdb.Get (i).Name;
-			}
+			_editor = new ISItemEditorManager ();
 		}
 
 		public virtual void Clone (ISItem weapon) {
@@ -120,36 +111,7 @@ namespace FalloutRpg.ItemSystem {
 		}
 
 		public virtual void OnGUI () {
-			_name = EditorGUILayout.TextField ("Name", _name); 
-			_price = Convert.ToInt32(EditorGUILayout.TextField ("Price", _price.ToString()));
-			_weight = Convert.ToInt32(EditorGUILayout.TextField ("Weight", _weight.ToString()));
-			DisplayIcon ();
-			DisplayRarity ();
-			DisplayPrefab ();
-		}
-
-		public void DisplayIcon() {
-			_icon = EditorGUILayout.ObjectField ("Icon", _icon, typeof(Sprite), false) as Sprite;
-		}
-
-		public void DisplayRarity() {
-			//if (_rarity == null)
-				//return;
-			int itemIndex = 0;
-			//Debug.Log("Quality Index: " + rdb.GetIndex(_rarity.Name));
-			if (_rarity != null)
-				itemIndex = rdb.GetIndex (_rarity.Name);
-			if (itemIndex == -1) {
-				if(rdb.Count == 0)
-					return;
-				itemIndex = 0;
-			}
-			rarityIndex = EditorGUILayout.Popup ("Rarity", itemIndex, options);
-			_rarity = rdb.Get (rarityIndex);
-		}
-
-		public void DisplayPrefab () {
-			_prefab = EditorGUILayout.ObjectField ("Prefab", _prefab, typeof(GameObject), false) as GameObject;
+			_editor.OnGUI (_name, _price, _weight, _icon, _rarity, _prefab);
 		}
 
 	}
