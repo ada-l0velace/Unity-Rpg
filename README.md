@@ -22,7 +22,7 @@ Run on terminal
 <a href="https://trello.com/b/gD8iwWxM/fallout-rpg">To Do tasks - Trello</a>
 
 <a href="https://drive.draw.io/#G0B7OkbHEzNbIdYnZSZVNfRzV0UmM">UML Chart</a> 
-
+![alt tag](https://raw.githubusercontent.com/lolstorm92/Unity-Rpg/master/Fallout.RPG.png)
 
 # Research Material
 
